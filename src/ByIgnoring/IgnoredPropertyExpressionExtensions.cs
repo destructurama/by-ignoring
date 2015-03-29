@@ -15,7 +15,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Serilog.Extras.DestructureByIgnoring
+namespace Destructurama.ByIgnoring
 {
     static class IgnoredPropertyExpressionExtensions
     {

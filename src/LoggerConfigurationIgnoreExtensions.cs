@@ -14,10 +14,11 @@
 
 using System;
 using System.Linq.Expressions;
+using Destructurama.ByIgnoring;
+using Serilog;
 using Serilog.Configuration;
-using Serilog.Extras.DestructureByIgnoring;
 
-namespace Serilog
+namespace Destructurama
 {    
     /// <summary>
     /// Adds the Destructure.ByIgnoringProperties() extension to <see cref="LoggerDestructuringConfiguration"/>.

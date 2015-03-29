@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destructurama.ByIgnoring", "src\Destructurama.ByIgnoring.csproj", "{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destructurama.ByIgnoring.Tests", "test\Destructurama.ByIgnoring.Tests\Destructurama.ByIgnoring.Tests.csproj", "{977E42C3-D501-4730-98FF-525B753B1E3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977E42C3-D501-4730-98FF-525B753B1E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977E42C3-D501-4730-98FF-525B753B1E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977E42C3-D501-4730-98FF-525B753B1E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977E42C3-D501-4730-98FF-525B753B1E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
