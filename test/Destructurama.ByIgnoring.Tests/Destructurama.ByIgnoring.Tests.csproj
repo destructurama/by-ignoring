@@ -66,7 +66,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Destructurama.ByIgnoring.csproj">
+    <ProjectReference Include="..\..\src\Destructurama.ByIgnoring\Destructurama.ByIgnoring.csproj">
       <Project>{c5cc62f4-310f-495c-96ea-b8e5d26f8d57}</Project>
       <Name>Destructurama.ByIgnoring</Name>
     </ProjectReference>
