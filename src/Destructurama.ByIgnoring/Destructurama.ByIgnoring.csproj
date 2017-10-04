@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <PackageId>Destructurama.ByIgnoring</PackageId>
     <Authors>Destructurama Contributors, Serilog Contributors</Authors>
+    <Copyright>Copyright © Serilog Contributors 2017</Copyright>
+    <Title>Serilog.Extras.DestructureByIgnoring</Title>
+    <Product>Serilog Lambda-Driven Destructuring Support</Product>
     <Description>Specify how complex types are logged to Serilog by excluding individual properties.</Description>
     <PackageProjectUrl>https://github.com/destructurama</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
@@ -15,6 +17,8 @@
     <RootNamespace>Destructurama</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
+    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,15 +32,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\assets\CommonAssemblyInfo.cs" Link="Properties\CommonAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\assets\Destructurama.snk" Link="Destructurama.snk" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Serilog" Version="2.0.0" />
+    <PackageReference Include="Serilog" Version="2.*" />
   </ItemGroup>
 
 </Project>
