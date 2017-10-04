@@ -1,75 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Destructurama</RootNamespace>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <VersionPrefix>1.1.0</VersionPrefix>
+    <PackageId>Destructurama.ByIgnoring</PackageId>
+    <Authors>Destructurama Contributors, Serilog Contributors</Authors>
+    <Copyright>Copyright © Serilog Contributors 2017</Copyright>
+    <Title>Serilog.Extras.DestructureByIgnoring</Title>
+    <Product>Serilog Lambda-Driven Destructuring Support</Product>
+    <Description>Specify how complex types are logged to Serilog by excluding individual properties.</Description>
+    <PackageProjectUrl>https://github.com/destructurama</PackageProjectUrl>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>http://destructurama.github.io/pages/images/destructurama.png</PackageIconUrl>
+    <PackageTags>serilog</PackageTags>
     <AssemblyName>Destructurama.ByIgnoring</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Debug\Destructurama.ByIgnoring.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\Destructurama.ByIgnoring.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup>
+    <RootNamespace>Destructurama</RootNamespace>
     <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
+    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.0\Destructurama.ByIgnoring.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.0\Destructurama.ByIgnoring.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\assets\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="ByIgnoring\DestructureByIgnoringPolicy.cs" />
-    <Compile Include="ByIgnoring\IgnoredPropertyExpressionExtensions.cs" />
-    <Compile Include="LoggerConfigurationIgnoreExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="..\assets\Destructurama.snk" Link="Destructurama.snk" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="..\..\assets\Destructurama.snk">
-      <Link>Destructurama.snk</Link>
-    </None>
-    <None Include="Destructurama.ByIgnoring.nuspec" />
-    <None Include="packages.config" />
+    <PackageReference Include="Serilog" Version="2.*" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Serilog">
-      <HintPath>..\..\packages\Serilog.1.4.204\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Serilog.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
