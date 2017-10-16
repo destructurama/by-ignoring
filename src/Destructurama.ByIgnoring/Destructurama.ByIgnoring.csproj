@@ -6,7 +6,7 @@
     <PackageId>Destructurama.ByIgnoring</PackageId>
     <Authors>Destructurama Contributors, Serilog Contributors</Authors>
     <Copyright>Copyright © Serilog Contributors 2017</Copyright>
-    <Title>Serilog.Extras.DestructureByIgnoring</Title>
+    <Title>Destructurama.ByIgnoring</Title>
     <Product>Serilog Lambda-Driven Destructuring Support</Product>
     <Description>Specify how complex types are logged to Serilog by excluding individual properties.</Description>
     <PackageProjectUrl>https://github.com/destructurama</PackageProjectUrl>
