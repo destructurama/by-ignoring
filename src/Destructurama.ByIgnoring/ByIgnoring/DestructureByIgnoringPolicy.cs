@@ -34,7 +34,9 @@ namespace Destructurama.ByIgnoring
             var namesOfPropertiesToIgnore = ignoredProperties.Select(GetNameOfPropertyToIgnore).ToArray();
             var runtimeProperties = _destructureType.GetRuntimeProperties();
 
-            _propertiesToInclude = runtimeProperties.Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
+            _propertiesToInclude = runtimeProperties
+                .Where(p=> p.CanRead)
+                .Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
         }
 
         public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue result)
