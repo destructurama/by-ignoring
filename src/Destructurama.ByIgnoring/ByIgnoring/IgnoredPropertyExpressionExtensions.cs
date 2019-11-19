@@ -45,9 +45,7 @@ namespace Destructurama.ByIgnoring
 
         private static MemberExpression GetMemberExpressionForValueType(Expression expression)
         {
-            var bodyOfExpression = expression as UnaryExpression;
-
-            return bodyOfExpression != null ? bodyOfExpression.Operand as MemberExpression : null;
+            return expression is UnaryExpression bodyOfExpression ? bodyOfExpression.Operand as MemberExpression : null;
         }
 
         private static MemberExpression GetMemberExpressionForReferenceType(Expression expression)

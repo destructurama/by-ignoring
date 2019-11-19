@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard1.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <VersionPrefix>1.1.0</VersionPrefix>
     <PackageId>Destructurama.ByIgnoring</PackageId>
     <Authors>Destructurama Contributors, Serilog Contributors</Authors>
@@ -10,33 +11,28 @@
     <Product>Serilog Lambda-Driven Destructuring Support</Product>
     <Description>Specify how complex types are logged to Serilog by excluding individual properties.</Description>
     <PackageProjectUrl>https://github.com/destructurama</PackageProjectUrl>
-    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>http://destructurama.github.io/pages/images/destructurama.png</PackageIconUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>serilog</PackageTags>
     <AssemblyName>Destructurama.ByIgnoring</AssemblyName>
     <RootNamespace>Destructurama</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
     <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.0\Destructurama.ByIgnoring.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\Destructurama.ByIgnoring.xml</DocumentationFile>
+    <DisableImplicitFrameworkReferences Condition="'$(TargetFramework)' == 'netstandard1.0'">true</DisableImplicitFrameworkReferences>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\assets\Destructurama.snk" Link="Destructurama.snk" />
+    <None Include="..\..\assets\icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Serilog" Version="2.5.0" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.0'" Include="Serilog" Version="2.5.0" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="Serilog" Version="[2.8.0,3.0.0)" />
   </ItemGroup>
 
 </Project>
