@@ -1,4 +1,4 @@
-// Copyright 2014 Serilog Contributors
+// Copyright 2017 Serilog Contributors
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,9 +45,7 @@ namespace Destructurama.ByIgnoring
 
         private static MemberExpression GetMemberExpressionForValueType(Expression expression)
         {
-            var bodyOfExpression = expression as UnaryExpression;
-
-            return bodyOfExpression != null ? bodyOfExpression.Operand as MemberExpression : null;
+            return expression is UnaryExpression bodyOfExpression ? bodyOfExpression.Operand as MemberExpression : null;
         }
 
         private static MemberExpression GetMemberExpressionForReferenceType(Expression expression)

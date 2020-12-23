@@ -1,4 +1,4 @@
-﻿// Copyright 2014 Serilog Contributors
+﻿// Copyright 2017 Serilog Contributors
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,9 @@ namespace Destructurama.ByIgnoring
             var namesOfPropertiesToIgnore = ignoredProperties.Select(GetNameOfPropertyToIgnore).ToArray();
             var runtimeProperties = _destructureType.GetRuntimeProperties();
 
-            _propertiesToInclude = runtimeProperties.Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
+            _propertiesToInclude = runtimeProperties
+                .Where(p=> p.CanRead)
+                .Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
         }
 
         public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue result)

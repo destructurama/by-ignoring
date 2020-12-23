@@ -1,11 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destructurama.ByIgnoring", "src\Destructurama.ByIgnoring\Destructurama.ByIgnoring.csproj", "{C5CC62F4-310F-495C-96EA-B8E5D26F8D57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destructurama.ByIgnoring.Tests", "test\Destructurama.ByIgnoring.Tests\Destructurama.ByIgnoring.Tests.csproj", "{977E42C3-D501-4730-98FF-525B753B1E3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B827DF-B6A0-41E2-8554-2B8200F5238E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		Build.ps1 = Build.ps1
+		CHANGES.md = CHANGES.md
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

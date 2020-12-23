@@ -85,5 +85,40 @@ namespace Destructurama.ByIgnoring.Tests
 
             Assert.That(ex.ParamName, Is.EqualTo("ignoredProperty"));
         }
+
+
+        class DestructureMeWithPropertyWithOnlySetter
+        {
+            private string _onlySetter;
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Password { get; set; }
+            public string OnlySetter { set { _onlySetter = value; } }
+        }
+
+        [Test]
+        public void ClassWithAPropertyOnlyWithSetterDoesNotCrash()
+        {
+            LogEvent evt = null;
+
+            Expression<Func<DestructureMeWithPropertyWithOnlySetter, object>> valueTypeProperty = dm => dm.Id;
+            Expression<Func<DestructureMeWithPropertyWithOnlySetter, object>> referenceTypeProperty = dm => dm.Password;
+
+            var log = new LoggerConfiguration()
+                .Destructure.ByIgnoringProperties(valueTypeProperty, referenceTypeProperty)
+                .WriteTo.Sink(new DelegatingSink(e => evt = e))
+                .CreateLogger();
+
+            var ignored = new DestructureMeWithPropertyWithOnlySetter
+            {
+                Id = 2,
+                Name = "Name",
+                Password = "Password"
+            };
+
+            log.Information("Here is {@Ignored}", ignored);
+
+            Assert.IsTrue(true, "We did not throw!");
+        }
     }
 }
