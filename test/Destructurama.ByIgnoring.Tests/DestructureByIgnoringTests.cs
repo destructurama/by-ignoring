@@ -16,6 +16,7 @@ namespace Destructurama.ByIgnoring.Tests
             public int Id { get; set; }
             public string Name { get; set; }
             public string Password { get; set; }
+            public string SomeStatic { get; set; } = "AAA";
         }
 
         [Test]
@@ -30,7 +31,7 @@ namespace Destructurama.ByIgnoring.Tests
                 .Destructure.ByIgnoringProperties(valueTypeProperty, referenceTypeProperty)
                 .WriteTo.Sink(new DelegatingSink(e => evt = e))
                 .CreateLogger();
-            
+
             var ignored = new DestructureMe
             {
                 Id = 2,
@@ -45,6 +46,7 @@ namespace Destructurama.ByIgnoring.Tests
 
             Assert.IsFalse(props.ContainsKey("Id"), "Id property should have been ignored");
             Assert.IsFalse(props.ContainsKey("Password"), "Password property should have been ignored.");
+            Assert.IsFalse(props.ContainsKey("SomeStatic"), "SomeStatic static property should have been always ignored.");
             Assert.AreEqual("Name", props["Name"].LiteralValue());
         }
 

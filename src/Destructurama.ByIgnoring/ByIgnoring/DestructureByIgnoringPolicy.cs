@@ -1,11 +1,11 @@
 ﻿// Copyright 2017 Serilog Contributors
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,8 @@ namespace Destructurama.ByIgnoring
             var runtimeProperties = _destructureType.GetRuntimeProperties();
 
             _propertiesToInclude = runtimeProperties
-                .Where(p=> p.CanRead)
+                .Where(p => p.CanRead)
+                .Where(p => !p.GetMethod.IsStatic)
                 .Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
         }
 
@@ -46,7 +47,7 @@ namespace Destructurama.ByIgnoring
                 result = null;
                 return false;
             }
-            
+
             result = BuildStructure(value, propertyValueFactory);
 
             return true;
