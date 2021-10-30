@@ -37,6 +37,7 @@ namespace Destructurama.ByIgnoring
             _propertiesToInclude = runtimeProperties
                 .Where(p => p.CanRead)
                 .Where(p => !p.GetMethod.IsStatic)
+                .Where(p => p.GetIndexParameters().Length == 0)
                 .Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
         }
 

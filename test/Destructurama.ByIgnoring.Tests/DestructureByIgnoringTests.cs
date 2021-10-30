@@ -17,6 +17,7 @@ namespace Destructurama.ByIgnoring.Tests
             public string Name { get; set; }
             public string Password { get; set; }
             public static string SomeStatic { get; set; } = "AAA";
+            public string this[int index] => "value";
         }
 
         [Test]
