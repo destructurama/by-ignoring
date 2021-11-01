@@ -19,7 +19,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger()
 ```
 
-When these types are destructured, all properties except the specified ones will be passed through:
+When these types are destructured, all instance (that is not static) properties except the specified ones will be passed through:
 
 ```csharp
 Log.Information("Logged on {@User}", new User { Username = "nick", Password = "This is ignored" });

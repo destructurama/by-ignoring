@@ -11,7 +11,7 @@ namespace Destructurama.ByIgnoring.Tests.Support
 
         public DelegatingSink(Action<LogEvent> write)
         {
-            _write = write ?? throw new ArgumentNullException("write");
+            _write = write ?? throw new ArgumentNullException(nameof(write));
         }
 
         public void Emit(LogEvent logEvent)
