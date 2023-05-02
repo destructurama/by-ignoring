@@ -35,7 +35,7 @@ namespace Destructurama
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
         public static LoggerConfiguration ByIgnoringProperties<TDestruture>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestruture, object>>[] ignoredProperty) =>
-            configuration.ByIgnoringProperties(obj => obj.GetType() == typeof(TDestruture), ignoredProperty);
+            configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestruture), ignoredProperty);
 
         /// <summary>
         /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
@@ -45,7 +45,7 @@ namespace Destructurama
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
         public static LoggerConfiguration ByIgnoringPropertiesOfTypeAssignableTo<TDestruture>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestruture, object>>[] ignoredProperty) =>
-            configuration.ByIgnoringProperties(obj => obj is TDestruture, ignoredProperty);
+            configuration.ByIgnoringPropertiesWhere(obj => obj is TDestruture, ignoredProperty);
 
         /// <summary>
         /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
@@ -55,9 +55,9 @@ namespace Destructurama
         /// <param name="handleDestructuringPredicate">Given an object to destructure, should this policy take effect?</param>
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringProperties<TDestruture>(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Expression<Func<TDestruture, object>>[] ignoredProperty)
+        public static LoggerConfiguration ByIgnoringPropertiesWhere<TDestruture>(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Expression<Func<TDestruture, object>>[] ignoredProperty)
         {
-            return configuration.ByIgnoringProperties(
+            return configuration.ByIgnoringPropertiesWhere(
                 handleDestructuringPredicate,
                 ignoredProperty
                     .Select(x => x.GetPropertyNameFromExpression())
@@ -73,7 +73,7 @@ namespace Destructurama
         /// <param name="handleDestructuringPredicate">Given an object to destructure, should this policy take effect?</param>
         /// <param name="ignoredPropertyPredicates">When the predicate returns true for a provided property, said will be ignored when destructured by serilog.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringProperties(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates) =>
+        public static LoggerConfiguration ByIgnoringPropertiesWhere(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates) =>
             configuration.With(new DestructureByIgnoringPolicy(handleDestructuringPredicate, ignoredPropertyPredicates));
     }
 }
