@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.1</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>1.1.1</VersionPrefix>
     <PackageId>Destructurama.ByIgnoring</PackageId>
@@ -27,12 +27,12 @@
 
   <ItemGroup>
     <None Include="..\assets\Destructurama.snk" Link="Destructurama.snk" />
-    <None Include="..\..\assets\icon.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\assets\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.0'" Include="Serilog" Version="2.5.0" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="Serilog" Version="[2.8.0,3.0.0)" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.1'" Include="Serilog" Version="2.*" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="Serilog" Version="[2.10.0,3.0.0)" />
   </ItemGroup>
 
 </Project>
