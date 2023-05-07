@@ -39,7 +39,7 @@ namespace Destructurama
 
         /// <summary>
         /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
-        /// properties are ignored when an object of type assignable to TDestruture is destructured by serilog.
+        /// properties are ignored when an object of type assignable to TDestructure is destructured by serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
