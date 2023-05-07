@@ -38,7 +38,7 @@ namespace Destructurama
             configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestructure), ignoredProperty);
 
         /// <summary>
-        /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
+        /// Destructure.ByIgnoringPropertiesOfTypeAssignableTo takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
         /// properties are ignored when an object of type assignable to TDestructure is destructured by serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
