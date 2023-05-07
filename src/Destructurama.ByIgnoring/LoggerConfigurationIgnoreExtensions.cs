@@ -66,7 +66,7 @@ namespace Destructurama
         }
 
         /// <summary>
-        /// Destructure.ByIgnoringProperties takes one or more ignoredProperty predicates that when true indicates a given property is to be ignored when destructured by serilog.
+        /// Destructure.ByIgnoringPropertiesWhere takes one or more ignoredProperty predicates that when true indicates a given property is to be ignored when destructured by serilog.
         /// This ignoring only comes into play for an object where destructurePredicate returns true.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
