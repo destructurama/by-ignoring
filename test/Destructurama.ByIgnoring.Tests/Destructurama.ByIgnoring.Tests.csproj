@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;netcoreapp3.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2;netcoreapp3.0;net7.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <RootNamespace>Destructurama.ByIgnoring.Tests</RootNamespace>
     <AssemblyName>Destructurama.ByIgnoring.Tests</AssemblyName>
