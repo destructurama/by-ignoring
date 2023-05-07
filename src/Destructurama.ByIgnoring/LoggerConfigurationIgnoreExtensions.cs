@@ -34,8 +34,8 @@ namespace Destructurama
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringProperties<TDestruture>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestruture, object>>[] ignoredProperty) =>
-            configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestruture), ignoredProperty);
+        public static LoggerConfiguration ByIgnoringProperties<TDestructure>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestructure, object>>[] ignoredProperty) =>
+            configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestructure), ignoredProperty);
 
         /// <summary>
         /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
