@@ -57,7 +57,7 @@ public class ByIgnoreWhereTestCases
             },
         };
 
-        foreach (var scenario in ConvertFromByIgnoringScenarios())
+        foreach (var scenario in Convert(ByIgnoringTestCases.DestructureMeSuccessTestCases()))
             yield return scenario;
     }
 
@@ -96,17 +96,9 @@ public class ByIgnoreWhereTestCases
         };
     }
 
-    private static IEnumerable<ByIgnoreWhereTestCase> ConvertFromByIgnoringScenarios()
+    private static IEnumerable<ByIgnoreWhereTestCase> Convert(IEnumerable<ByIgnoringTestCase<DestructureMe>> input)
     {
-        // It isn't great that this test has knowledge of ByIgnoringTestCases's types, but this seems like an ok concession.
-        if (ByIgnoringTestCases.DestructureMeSuccessTestCases().Any(x => x.MyType != typeof(DestructureMe)))
-        {
-            throw new ApplicationException(
-                $"It looks like {nameof(ByIgnoringTestCases)}.{nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases)} is returning a generic other than {nameof(DestructureMe)}." +
-                $"In order to prevent duplicate tests we generate test cases assuming this type is used.");
-        }
-
-        return ByIgnoringTestCases.DestructureMeSuccessTestCases()
+        return input
             .Select(x => new ByIgnoreWhereTestCase(x.TestName)
             {
                 HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),

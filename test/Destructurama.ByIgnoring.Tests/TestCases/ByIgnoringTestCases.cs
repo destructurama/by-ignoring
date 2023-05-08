@@ -15,7 +15,6 @@ public record ByIgnoringTestCase<TDestructure>(string TestName)
     public Expression<Func<TDestructure, object>>[] IgnoredProperties { get; set; }
     public object ObjectToDestructure { get; set; }
     public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; }
-    public Type MyType => typeof(TDestructure);
 }
 
 public record ByIgnoreExceptionTestCase<TDestructure>(string TestName)
