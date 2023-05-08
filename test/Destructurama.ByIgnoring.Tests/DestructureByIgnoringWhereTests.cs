@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Destructurama.ByIgnoring.Tests.Support;
+using Destructurama.ByIgnoring.Tests.TestCases;
 using FluentAssertions;
 using NUnit.Framework;
 using Serilog;
@@ -14,8 +15,8 @@ namespace Destructurama.ByIgnoring.Tests
     [TestFixture]
     public class DestructureByIgnoringWhereTests
     {
-        [TestCaseSource(nameof(GetTestCases))]
-        public void PropertyNamesInExpressionsAreIgnoredWhenDestructuring(TestCase testCase)
+        [TestCaseSource(typeof(ByIgnoreWhereTestCases), nameof(ByIgnoreWhereTestCases.ShouldDestructureSuccessfullyTestCases))]
+        public void PropertiesAreIgnoredWhenDestructuring(ByIgnoreWhereTestCase testCase)
         {
             // Setup
             LogEvent evt = null;
@@ -35,51 +36,20 @@ namespace Destructurama.ByIgnoring.Tests
             props.Should().BeEquivalentTo(testCase.ExpectedPropertiesLogged);
         }
 
-        private static IEnumerable<TestCase> GetTestCases()
+        [TestCaseSource(typeof(ByIgnoreWhereTestCases), nameof(ByIgnoreWhereTestCases.ShouldThrowExceptionTestCases))]
+        public void ExceptionThrownWhenRegisteringDestructure(ByIgnoreWhereExceptionTestCase testCase)
         {
-            yield return new TestCase("Ignore id and password should only include name")
-            {
-                HandleDestructuringPredicate = obj => obj is IDestructureMe,
-                IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
-                {
-                    pi => pi.Name == nameof(DestructureMe.Id),
-                    pi => pi.Name == nameof(DestructureMe.Password),
-                },
-                ObjectToDestructure = new DestructureMe
-                {
-                    Id = 2,
-                    Name = "CoolName",
-                    Password = "Password",
-                },
-                ExpectedPropertiesLogged = new Dictionary<string, LogEventPropertyValue>
-                {
-                    { "Name", new ScalarValue("CoolName") },
-                },
-            };
-        }
+            // Setup
+            var config = new LoggerConfiguration();
 
-        interface IDestructureMe
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Password { get; set; }
-        }
+            // Execute
+            Action configureByIgnoringAction = () => config.Destructure.ByIgnoringPropertiesWhere(testCase.HandleDestructuringPredicate, testCase.IgnoredPropertyPredicates);
 
-        class DestructureMe : IDestructureMe
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Password { get; set; }
-            public static string SomeStatic { get; set; } = "AAA";
-            public string this[int index] => "value";
-        }
-
-        public record TestCase(string TestName)
-        {
-            public Func<object, bool> HandleDestructuringPredicate { get; set; }
-            public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
-            public object ObjectToDestructure { get; set; }
-            public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; }
+            // Execute
+            configureByIgnoringAction
+                .Should()
+                .Throw<Exception>()
+                .Where(ex => ex.GetType() == testCase.ExceptionType);
         }
     }
 }
