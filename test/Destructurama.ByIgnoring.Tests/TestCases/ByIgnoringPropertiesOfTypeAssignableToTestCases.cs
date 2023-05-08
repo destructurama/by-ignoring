@@ -10,7 +10,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 {
     public static IEnumerable<ByIgnoringTestCase<IDestructureMe>> IDestructureMeSuccessTestCases()
     {
-        // TODO - I can't figure out a way to convert these from DestructureMeSuccessTestCases.ByIgnoringTestCases(), so we'll duplicate the scenarios here and change the type. If someone can figure this out please make them more like ByIgnoringWhereTestCases.cs
+        // TODO - I can't figure out a way to convert these from ByIgnoringTestCases.DestructureMeSuccessTestCases(), so we'll duplicate the scenarios here and change the type. If someone can figure this out please make them more like ByIgnoringWhereTestCases.cs
         yield return new ByIgnoringTestCase<IDestructureMe>("Ignore id and password should only include name")
         {
             IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
@@ -104,7 +104,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
     public static IEnumerable<ByIgnoreExceptionTestCase<IDestructureMe>> ShouldThrowExceptionTestCases()
     {
-        // TODO - I can't figure out a way to convert these from DestructureMeSuccessTestCases.ShouldThrowExceptionTestCases(), so we'll duplicate the scenarios here and change the type. If someone can figure this out please make them more like ByIgnoringWhereTestCases.cs
+        // TODO - I can't figure out a way to convert these from ByIgnoringTestCases.ShouldThrowExceptionTestCases(), so we'll duplicate the scenarios here and change the type. If someone can figure this out please make them more like ByIgnoringWhereTestCases.cs
         yield return new ByIgnoreExceptionTestCase<IDestructureMe>("ComplexExpressionsFail")
         {
             IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]

@@ -26,12 +26,8 @@ namespace Destructurama.ByIgnoring
                                                       "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
 
         /// <summary>
-        /// Obtains the name of a property using an expression.
+        /// Obtains the name of a property of the provided TDestructureType using an expression.
         /// </summary>
-        /// <param name="ignoredProperty"></param>
-        /// <typeparam name="TDestructureType"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
         public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object>> ignoredProperty)
         {
             var expressionBody = ignoredProperty.Body;
