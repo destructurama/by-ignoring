@@ -45,7 +45,7 @@ namespace Destructurama.ByIgnoring.Tests
             // Execute
             Action configureByIgnoringAction = () => config.Destructure.ByIgnoringPropertiesOfTypeAssignableTo(testCase.IgnoredProperties);
 
-            // Execute
+            // Verify
             configureByIgnoringAction
                 .Should()
                 .Throw<Exception>()
