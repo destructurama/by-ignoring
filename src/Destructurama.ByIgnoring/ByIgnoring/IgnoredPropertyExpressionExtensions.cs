@@ -17,11 +17,21 @@ using System.Linq.Expressions;
 
 namespace Destructurama.ByIgnoring
 {
-    static class IgnoredPropertyExpressionExtensions
+    /// <summary>
+    /// Extension methods used to obtain property names.
+    /// </summary>
+    public static class IgnoredPropertyExpressionExtensions
     {
         private const string expressionNotSupported = "A property name cannot be retrieved from function expression with body of type {0}. " +
                                                       "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
 
+        /// <summary>
+        /// Obtains the name of a property using an expression.
+        /// </summary>
+        /// <param name="ignoredProperty"></param>
+        /// <typeparam name="TDestructureType"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object>> ignoredProperty)
         {
             var expressionBody = ignoredProperty.Body;

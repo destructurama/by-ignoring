@@ -4,37 +4,24 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using Serilog.Events;
 
 namespace Destructurama.ByIgnoring.Tests.TestCases;
 
-public record ByIgnoreWhereTestCase(string TestName)
-{
-    public Func<object, bool> HandleDestructuringPredicate { get; set; }
-    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
-    public object ObjectToDestructure { get; set; }
-    public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; }
-}
-
-public record ByIgnoreWhereExceptionTestCase(string TestName)
-{
-    public Func<object, bool> HandleDestructuringPredicate { get; set; }
-    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
-    public Type ExceptionType { get; set; }
-}
-
 public class ByIgnoreWhereTestCases
 {
     public static IEnumerable<ByIgnoreWhereTestCase> ShouldDestructureSuccessfullyTestCases()
     {
-        yield return new ByIgnoreWhereTestCase("Ignore id and password should only include name")
+        yield return new ByIgnoreWhereTestCase("given matching handle predicate, then ignore properties according to supplied predicates")
         {
-            HandleDestructuringPredicate = obj => obj is IDestructureMe,
+            HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),
             IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
             {
-                pi => pi.Name == nameof(DestructureMe.Id),
-                pi => pi.Name == nameof(DestructureMe.Password),
+                pi => pi.Name == nameof(DestructureMe.Id), // value type property
+                pi => pi.Name == nameof(DestructureMe.Password), // reference type property
             },
             ObjectToDestructure = new DestructureMe
             {
@@ -47,6 +34,31 @@ public class ByIgnoreWhereTestCases
                 { "Name", new ScalarValue("CoolName") },
             },
         };
+
+        yield return new ByIgnoreWhereTestCase("given a non-matching handle predicate, then log entire object")
+        {
+            HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),
+            IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
+            {
+                pi => pi.Name == nameof(DestructureMe.Id), // value type property
+                pi => pi.Name == nameof(DestructureMe.Password), // reference type property
+            },
+            ObjectToDestructure = new
+            {
+                Id = 2,
+                Name = "CoolName",
+                Password = "Password",
+            },
+            ExpectedPropertiesLogged = new Dictionary<string, LogEventPropertyValue>
+            {
+                { "Id", new ScalarValue(2) },
+                { "Name", new ScalarValue("CoolName") },
+                { "Password", new ScalarValue("Password") },
+            },
+        };
+
+        foreach (var scenario in ConvertFromByIgnoringScenarios())
+            yield return scenario;
     }
 
     public static IEnumerable<ByIgnoreWhereExceptionTestCase> ShouldThrowExceptionTestCases()
@@ -84,19 +96,42 @@ public class ByIgnoreWhereTestCases
         };
     }
 
-    interface IDestructureMe
+    private static IEnumerable<ByIgnoreWhereTestCase> ConvertFromByIgnoringScenarios()
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-    }
+        // It isn't great that this test has knowledge of ByIgnoringTestCases's types, but this seems like an ok concession.
+        if (ByIgnoringTestCases.DestructureMeSuccessTestCases().Any(x => x.MyType != typeof(DestructureMe)))
+        {
+            throw new ApplicationException(
+                $"It looks like {nameof(ByIgnoringTestCases)}.{nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases)} is returning a generic other than {nameof(DestructureMe)}." +
+                $"In order to prevent duplicate tests we generate test cases assuming this type is used.");
+        }
 
-    class DestructureMe : IDestructureMe
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public static string SomeStatic { get; set; } = "AAA";
-        public string this[int index] => "value";
+        return ByIgnoringTestCases.DestructureMeSuccessTestCases()
+            .Select(x => new ByIgnoreWhereTestCase(x.TestName)
+            {
+                HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),
+                IgnoredPropertyPredicates = x.IgnoredProperties
+                    .Select<Expression<Func<DestructureMe, object>>, Func<PropertyInfo, bool>>(
+                        // It's also not great that we're using sut code - GetPropertyNameFromExpression() - in our test. This is edging towards tautological. But I've got nothing better at the moment other than duplicating scenarios
+                        destructureMe => propertyInfo => propertyInfo.Name == destructureMe.GetPropertyNameFromExpression())
+                    .ToArray(),
+                ObjectToDestructure = x.ObjectToDestructure,
+                ExpectedPropertiesLogged = x.ExpectedPropertiesLogged,
+            });
     }
+}
+
+public record ByIgnoreWhereTestCase(string TestName)
+{
+    public Func<object, bool> HandleDestructuringPredicate { get; set; }
+    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
+    public object ObjectToDestructure { get; set; }
+    public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; }
+}
+
+public record ByIgnoreWhereExceptionTestCase(string TestName)
+{
+    public Func<object, bool> HandleDestructuringPredicate { get; set; }
+    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
+    public Type ExceptionType { get; set; }
 }
