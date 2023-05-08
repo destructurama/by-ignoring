@@ -32,20 +32,20 @@ namespace Destructurama
         /// properties are ignored when an object of type TDestruture is destructured by serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
-        /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
+        /// <param name="ignoredProperties">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringProperties<TDestructure>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestructure, object>>[] ignoredProperty) =>
-            configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestructure), ignoredProperty);
+        public static LoggerConfiguration ByIgnoringProperties<TDestructure>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestructure, object>>[] ignoredProperties) =>
+            configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestructure), ignoredProperties);
 
         /// <summary>
         /// Destructure.ByIgnoringPropertiesOfTypeAssignableTo takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
         /// properties are ignored when an object of type assignable to TDestructure is destructured by serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
-        /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
+        /// <param name="ignoredProperties">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringPropertiesOfTypeAssignableTo<TDestructure>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestructure, object>>[] ignoredProperty) =>
-            configuration.ByIgnoringPropertiesWhere(obj => obj is TDestructure, ignoredProperty);
+        public static LoggerConfiguration ByIgnoringPropertiesOfTypeAssignableTo<TDestructure>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestructure, object>>[] ignoredProperties) =>
+            configuration.ByIgnoringPropertiesWhere(obj => obj is TDestructure, ignoredProperties);
 
         /// <summary>
         /// Destructure.ByIgnoringPropertiesWhere takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
@@ -53,13 +53,13 @@ namespace Destructurama
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="handleDestructuringPredicate">Given an object to destructure, should this policy take effect?</param>
-        /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
+        /// <param name="ignoredProperties">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringPropertiesWhere<TDestruture>(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Expression<Func<TDestruture, object>>[] ignoredProperty)
+        public static LoggerConfiguration ByIgnoringPropertiesWhere<TDestruture>(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Expression<Func<TDestruture, object>>[] ignoredProperties)
         {
             return configuration.ByIgnoringPropertiesWhere(
                 handleDestructuringPredicate,
-                ignoredProperty
+                ignoredProperties
                     .Select(x => x.GetPropertyNameFromExpression())
                     .Select<string, Func<PropertyInfo, bool>>(ignoredPropertyName => pi => pi.Name == ignoredPropertyName)
                     .ToArray());
