@@ -58,7 +58,14 @@ public class ByIgnoreWhereTestCases
         };
 
         foreach (var scenario in Convert(ByIgnoringTestCases.DestructureMeSuccessTestCases()))
+        {
             yield return scenario;
+        }
+
+        foreach (var scenario in Convert(ByIgnoringTestCases.OnlySetterSuccessTestCases()))
+        {
+            yield return scenario;
+        }
     }
 
     public static IEnumerable<ByIgnoreWhereExceptionTestCase> ShouldThrowExceptionTestCases()
@@ -96,14 +103,14 @@ public class ByIgnoreWhereTestCases
         };
     }
 
-    private static IEnumerable<ByIgnoreWhereTestCase> Convert(IEnumerable<ByIgnoringTestCase<DestructureMe>> input)
+    private static IEnumerable<ByIgnoreWhereTestCase> Convert<T>(IEnumerable<ByIgnoringTestCase<T>> input)
     {
         return input
             .Select(x => new ByIgnoreWhereTestCase(x.TestName)
             {
-                HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),
+                HandleDestructuringPredicate = obj => obj.GetType() == typeof(T),
                 IgnoredPropertyPredicates = x.IgnoredProperties
-                    .Select<Expression<Func<DestructureMe, object>>, Func<PropertyInfo, bool>>(
+                    .Select<Expression<Func<T, object>>, Func<PropertyInfo, bool>>(
                         // It's also not great that we're using sut code - GetPropertyNameFromExpression() - in our test. This is edging towards tautological. But I've got nothing better at the moment other than duplicating scenarios
                         destructureMe => propertyInfo => propertyInfo.Name == destructureMe.GetPropertyNameFromExpression())
                     .ToArray(),
