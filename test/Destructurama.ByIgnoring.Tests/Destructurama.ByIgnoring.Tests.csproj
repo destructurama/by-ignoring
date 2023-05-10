@@ -1,9 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <RootNamespace>Destructurama.ByIgnoring.Tests</RootNamespace>
-    <AssemblyName>Destructurama.ByIgnoring.Tests</AssemblyName>
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
