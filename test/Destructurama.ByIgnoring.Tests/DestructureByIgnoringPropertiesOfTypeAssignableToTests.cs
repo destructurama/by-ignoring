@@ -47,7 +47,7 @@ namespace Destructurama.ByIgnoring.Tests
             var sv = (StructureValue)evt.Properties["Ignored"];
             var props = sv.Properties.ToDictionary(p => p.Name, p => p.Value);
 
-            props.Should().BeEquivalentTo(testCase.ExpectedPropertiesLogged);
+            props.Should().BeEquivalentTo(testCase.ExpectedPropertiesLogged, options => options.UsingSerilogTypeComparisons());
         }
 
         [TestCaseSource(typeof(ByIgnoringPropertiesOfTypeAssignableToTestCases), nameof(ByIgnoringPropertiesOfTypeAssignableToTestCases.ShouldThrowExceptionTestCases))]

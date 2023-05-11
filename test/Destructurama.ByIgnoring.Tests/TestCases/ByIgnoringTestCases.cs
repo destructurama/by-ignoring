@@ -147,7 +147,7 @@ public class ByIgnoringTestCases
             // would seem to me that we would either want to throw an exception or actually ignore Id and Password as the consumer intends.
             ExpectedPropertiesLogged = new Dictionary<string, LogEventPropertyValue>
             {
-                { "Id", new ScalarValue("2") },
+                { "Id", new ScalarValue(2) },
                 { "Name", new ScalarValue("CoolName") },
                 { "Password", new ScalarValue("Password") },
             },
