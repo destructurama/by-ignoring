@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>1.1.1</VersionPrefix>
     <PackageId>Destructurama.ByIgnoring</PackageId>
@@ -31,8 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.0'" Include="Serilog" Version="2.5.0" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="Serilog" Version="[2.8.0,3.0.0)" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.0'" Include="Serilog" Version="[2.5.0,3.0.0)" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0'" Include="Serilog" Version="[2.8.0,4.0.0)" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.1'" Include="Serilog" Version="[2.8.0,4.0.0)" />
   </ItemGroup>
 
 </Project>
