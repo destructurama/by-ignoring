@@ -31,7 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Serilog" Version="[2.8.0,4.0.0)" />
+    <!-- Helpful link to understand the package version ranges: https://learn.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges -->
+    <PackageReference Include="Serilog" Version="[2.8.0,)" />
   </ItemGroup>
 
 </Project>
