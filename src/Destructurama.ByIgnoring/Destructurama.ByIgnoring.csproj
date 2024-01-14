@@ -2,9 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
     <VersionPrefix>2.0.1</VersionPrefix>
-    <PackageId>Destructurama.ByIgnoring</PackageId>
     <Authors>Destructurama Contributors, Serilog Contributors</Authors>
     <Copyright>Copyright © Serilog Contributors 2017</Copyright>
     <Title>Destructurama.ByIgnoring</Title>
@@ -14,20 +12,25 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>serilog</PackageTags>
-    <AssemblyName>Destructurama.ByIgnoring</AssemblyName>
     <RootNamespace>Destructurama</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
     <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
-    <DisableImplicitFrameworkReferences Condition="'$(TargetFramework)' == 'netstandard1.0'">true</DisableImplicitFrameworkReferences>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryType>git</RepositoryType>
+    <DebugType>embedded</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\assets\Destructurama.snk" Link="Destructurama.snk" />
-    <None Include="..\..\assets\icon.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\assets\icon.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <Using Remove="System.Net.Http"/>
   </ItemGroup>
 
   <ItemGroup>

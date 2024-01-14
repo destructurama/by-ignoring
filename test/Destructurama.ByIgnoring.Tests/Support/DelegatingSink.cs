@@ -18,16 +18,5 @@ namespace Destructurama.ByIgnoring.Tests.Support
         {
             _write(logEvent);
         }
-
-        public static LogEvent GetLogEvent(Action<ILogger> writeAction)
-        {
-            LogEvent result = null;
-            var l = new LoggerConfiguration()
-                .WriteTo.Sink(new DelegatingSink(le => result = le))
-                .CreateLogger();
-
-            writeAction(l);
-            return result;
-        }
     }
 }

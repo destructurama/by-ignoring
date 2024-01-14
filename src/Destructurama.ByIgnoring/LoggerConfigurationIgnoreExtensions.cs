@@ -32,7 +32,7 @@ namespace Destructurama
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringProperties<TDestruture>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestruture, object>>[] ignoredProperty)
+        public static LoggerConfiguration ByIgnoringProperties<TDestruture>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestruture, object?>>[] ignoredProperty)
         {
             return configuration.With(new DestructureByIgnoringPolicy<TDestruture>(ignoredProperty));
         }
