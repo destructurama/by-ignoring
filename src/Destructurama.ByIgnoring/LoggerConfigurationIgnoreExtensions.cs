@@ -26,15 +26,15 @@ namespace Destructurama
     public static class LoggerConfigurationIgnoreExtensions
     {
         /// <summary>
-        /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
-        /// properties are ignored when an object of type TDestruture is destructured by serilog.
+        /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property,
+        /// and uses the property names to determine which properties are ignored when an object of type TDestructure is destructured by serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="ignoredProperty">The function expressions that expose the properties to ignore.</param>
         /// <returns>An object allowing configuration to continue.</returns>
-        public static LoggerConfiguration ByIgnoringProperties<TDestruture>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestruture, object?>>[] ignoredProperty)
+        public static LoggerConfiguration ByIgnoringProperties<TDestructure>(this LoggerDestructuringConfiguration configuration, params Expression<Func<TDestructure, object?>>[] ignoredProperty)
         {
-            return configuration.With(new DestructureByIgnoringPolicy<TDestruture>(ignoredProperty));
+            return configuration.With(new DestructureByIgnoringPolicy<TDestructure>(ignoredProperty));
         }
     }
 }

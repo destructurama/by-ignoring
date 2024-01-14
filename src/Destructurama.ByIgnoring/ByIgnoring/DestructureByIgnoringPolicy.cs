@@ -80,7 +80,7 @@ namespace Destructurama.ByIgnoring
 
         private static LogEventPropertyValue BuildLogEventProperty(object propertyValue, ILogEventPropertyValueFactory propertyValueFactory)
         {
-            return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, true);
+            return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
         }
 
         private static string GetNameOfPropertyToIgnore(Expression<Func<TDestructure, object?>> ignoredProperty)
