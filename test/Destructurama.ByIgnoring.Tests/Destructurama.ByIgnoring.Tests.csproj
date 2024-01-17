@@ -2,9 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>net462;net48;net6.0;net7.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <RootNamespace>Destructurama.ByIgnoring.Tests</RootNamespace>
-    <AssemblyName>Destructurama.ByIgnoring.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,12 +10,9 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="Serilog" Version="3.*" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Destructurama.ByIgnoring\Destructurama.ByIgnoring.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\..\src\Destructurama.ByIgnoring\Destructurama.ByIgnoring.csproj" />
   </ItemGroup>
 
 </Project>

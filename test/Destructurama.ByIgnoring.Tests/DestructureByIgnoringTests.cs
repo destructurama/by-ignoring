@@ -14,8 +14,8 @@ namespace Destructurama.ByIgnoring.Tests
         class DestructureMe
         {
             public int Id { get; set; }
-            public string Name { get; set; }
-            public string Password { get; set; }
+            public string? Name { get; set; }
+            public string? Password { get; set; }
             public static string SomeStatic { get; set; } = "AAA";
             public string this[int index] => "value";
         }
@@ -23,10 +23,10 @@ namespace Destructurama.ByIgnoring.Tests
         [Test]
         public void PropertyNamesInExpressionsAreIgnoredWhenDestructuring()
         {
-            LogEvent evt = null;
+            LogEvent? evt = null;
 
-            Expression<Func<DestructureMe, object>> valueTypeProperty = dm => dm.Id;
-            Expression<Func<DestructureMe, object>> referenceTypeProperty = dm => dm.Password;
+            Expression<Func<DestructureMe, object?>> valueTypeProperty = dm => dm.Id;
+            Expression<Func<DestructureMe, object?>> referenceTypeProperty = dm => dm.Password;
 
             var log = new LoggerConfiguration()
                 .Destructure.ByIgnoringProperties(valueTypeProperty, referenceTypeProperty)
@@ -42,7 +42,7 @@ namespace Destructurama.ByIgnoring.Tests
 
             log.Information("Here is {@Ignored}", ignored);
 
-            var sv = (StructureValue)evt.Properties["Ignored"];
+            var sv = (StructureValue)evt!.Properties["Ignored"];
             var props = sv.Properties.ToDictionary(p => p.Name, p => p.Value);
 
             Assert.IsFalse(props.ContainsKey("Id"), "Id property should have been ignored");
@@ -75,10 +75,10 @@ namespace Destructurama.ByIgnoring.Tests
         [Test]
         public void ChainedPropertyExpressionsFail()
         {
-            AssertUnsupportedExpression<DestructureMe>(dm => dm.Password.Length);
+            AssertUnsupportedExpression<DestructureMe>(dm => dm.Password!.Length);
         }
 
-        private void AssertUnsupportedExpression<T>(Expression<Func<T, object>> expressionThatShouldFail)
+        private void AssertUnsupportedExpression<T>(Expression<Func<T, object?>> expressionThatShouldFail)
         {
             var ex = Assert.Throws<ArgumentException>(() =>
                     new LoggerConfiguration()
@@ -86,26 +86,25 @@ namespace Destructurama.ByIgnoring.Tests
                     .ByIgnoringProperties(expressionThatShouldFail)
             );
 
-            Assert.That(ex.ParamName, Is.EqualTo("ignoredProperty"));
+            Assert.That(ex!.ParamName, Is.EqualTo("ignoredProperty"));
         }
-
 
         class DestructureMeWithPropertyWithOnlySetter
         {
-            private string _onlySetter;
+            private string? _onlySetter;
             public int Id { get; set; }
-            public string Name { get; set; }
-            public string Password { get; set; }
-            public string OnlySetter { set { _onlySetter = value; } }
+            public string? Name { get; set; }
+            public string? Password { get; set; }
+            public string? OnlySetter { set { _onlySetter = value; } }
         }
 
         [Test]
         public void ClassWithAPropertyOnlyWithSetterDoesNotCrash()
         {
-            LogEvent evt = null;
+            LogEvent? evt = null;
 
-            Expression<Func<DestructureMeWithPropertyWithOnlySetter, object>> valueTypeProperty = dm => dm.Id;
-            Expression<Func<DestructureMeWithPropertyWithOnlySetter, object>> referenceTypeProperty = dm => dm.Password;
+            Expression<Func<DestructureMeWithPropertyWithOnlySetter, object?>> valueTypeProperty = dm => dm.Id;
+            Expression<Func<DestructureMeWithPropertyWithOnlySetter, object?>> referenceTypeProperty = dm => dm.Password;
 
             var log = new LoggerConfiguration()
                 .Destructure.ByIgnoringProperties(valueTypeProperty, referenceTypeProperty)

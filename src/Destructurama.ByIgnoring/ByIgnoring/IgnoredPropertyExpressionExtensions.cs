@@ -22,7 +22,7 @@ namespace Destructurama.ByIgnoring
         private const string expressionNotSupported = "A property name cannot be retrieved from function expression with body of type {0}. " +
                                                       "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
 
-        public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object>> ignoredProperty)
+        public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object?>> ignoredProperty)
         {
             var expressionBody = ignoredProperty.Body;
 
@@ -35,20 +35,20 @@ namespace Destructurama.ByIgnoring
                     expressionBody.GetType().Name), nameof(ignoredProperty));
             }
 
-            return memberExpression.Member.Name;
+            return memberExpression!.Member.Name;
         }
 
-        private static MemberExpression GetMemberExpression(Expression expression)
+        private static MemberExpression? GetMemberExpression(Expression expression)
         {
             return GetMemberExpressionForValueType(expression) ?? GetMemberExpressionForReferenceType(expression);
         }
 
-        private static MemberExpression GetMemberExpressionForValueType(Expression expression)
+        private static MemberExpression? GetMemberExpressionForValueType(Expression expression)
         {
             return expression is UnaryExpression bodyOfExpression ? bodyOfExpression.Operand as MemberExpression : null;
         }
 
-        private static MemberExpression GetMemberExpressionForReferenceType(Expression expression)
+        private static MemberExpression? GetMemberExpressionForReferenceType(Expression expression)
         {
             return expression as MemberExpression;
         }

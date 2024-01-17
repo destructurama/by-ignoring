@@ -28,7 +28,7 @@ namespace Destructurama.ByIgnoring
         private readonly IEnumerable<PropertyInfo> _propertiesToInclude;
         private readonly Type _destructureType;
 
-        public DestructureByIgnoringPolicy(params Expression<Func<TDestructure, object>>[] ignoredProperties)
+        public DestructureByIgnoringPolicy(params Expression<Func<TDestructure, object?>>[] ignoredProperties)
         {
             _destructureType = typeof(TDestructure);
             var namesOfPropertiesToIgnore = ignoredProperties.Select(GetNameOfPropertyToIgnore).ToArray();
@@ -41,7 +41,7 @@ namespace Destructurama.ByIgnoring
                 .Where(p => !namesOfPropertiesToIgnore.Contains(p.Name)).ToArray();
         }
 
-        public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue result)
+        public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue? result)
         {
             if (value == null || value.GetType() != typeof(TDestructure))
             {
@@ -80,10 +80,10 @@ namespace Destructurama.ByIgnoring
 
         private static LogEventPropertyValue BuildLogEventProperty(object propertyValue, ILogEventPropertyValueFactory propertyValueFactory)
         {
-            return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, true);
+            return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
         }
 
-        private static string GetNameOfPropertyToIgnore(Expression<Func<TDestructure, object>> ignoredProperty)
+        private static string GetNameOfPropertyToIgnore(Expression<Func<TDestructure, object?>> ignoredProperty)
         {
             return ignoredProperty.GetPropertyNameFromExpression();
         }

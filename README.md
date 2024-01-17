@@ -13,7 +13,7 @@ Mark properties to ignore on target types:
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .Destructure.ByIgnoringProperties<User>(u => u.Password)
-    // Other logger configurationg
+    // Other logger configuration
     .CreateLogger()
 ```
 
