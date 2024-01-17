@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B827DF-B6A0-41E2-8554-2B8200F5238E}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\CHANGES.md = ..\CHANGES.md
+		..\assets\Destructurama.snk = ..\assets\Destructurama.snk
+		Directory.Build.props = Directory.Build.props
+		..\assets\icon.png = ..\assets\icon.png
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Destructurama.ByIgnoring", "Destructurama.ByIgnoring\Destructurama.ByIgnoring.csproj", "{BE457F6A-4563-4840-A6C0-65671073AE84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Destructurama.ByIgnoring.Tests", "Destructurama.ByIgnoring.Tests\Destructurama.ByIgnoring.Tests.csproj", "{3DFFED22-15E5-484E-B0F5-B583E78EB850}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{F958A493-085C-4514-B3D4-442E22E75C32}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\codecov.yml = ..\.github\codecov.yml
+		..\.github\dependabot.yml = ..\.github\dependabot.yml
+		..\.github\labeler.yml = ..\.github\labeler.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{EF3C3FAC-E521-426A-82D7-1213A9A4F75A}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
+		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B1147EF1-10FB-4729-9BD7-70BA461D2F94}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\codeql-analysis.yml = ..\.github\workflows\codeql-analysis.yml
+		..\.github\workflows\label.yml = ..\.github\workflows\label.yml
+		..\.github\workflows\publish-preview.yml = ..\.github\workflows\publish-preview.yml
+		..\.github\workflows\publish-release.yml = ..\.github\workflows\publish-release.yml
+		..\.github\workflows\stale.yml = ..\.github\workflows\stale.yml
+		..\.github\workflows\test.yml = ..\.github\workflows\test.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE457F6A-4563-4840-A6C0-65671073AE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE457F6A-4563-4840-A6C0-65671073AE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE457F6A-4563-4840-A6C0-65671073AE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE457F6A-4563-4840-A6C0-65671073AE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF3C3FAC-E521-426A-82D7-1213A9A4F75A} = {F958A493-085C-4514-B3D4-442E22E75C32}
+		{B1147EF1-10FB-4729-9BD7-70BA461D2F94} = {F958A493-085C-4514-B3D4-442E22E75C32}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9FB0B93-1C16-447E-9A86-2D5FF0F65947}
+	EndGlobalSection
+EndGlobal

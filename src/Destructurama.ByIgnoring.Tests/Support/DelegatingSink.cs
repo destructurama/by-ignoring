@@ -1,13 +1,11 @@
-﻿using System;
-using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 
 namespace Destructurama.ByIgnoring.Tests.Support
 {
-    public class DelegatingSink : ILogEventSink
+    internal sealed class DelegatingSink : ILogEventSink
     {
-        readonly Action<LogEvent> _write;
+        private readonly Action<LogEvent> _write;
 
         public DelegatingSink(Action<LogEvent> write)
         {

@@ -2,40 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.0</TargetFrameworks>
-    <VersionPrefix>2.0.1</VersionPrefix>
-    <Authors>Destructurama Contributors, Serilog Contributors</Authors>
-    <Copyright>Copyright © Serilog Contributors 2017</Copyright>
     <Title>Destructurama.ByIgnoring</Title>
     <Product>Serilog Lambda-Driven Destructuring Support</Product>
     <Description>Specify how complex types are logged to Serilog by excluding individual properties.</Description>
-    <PackageProjectUrl>https://github.com/destructurama</PackageProjectUrl>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>serilog</PackageTags>
     <RootNamespace>Destructurama</RootNamespace>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
-    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryType>git</RepositoryType>
-    <DebugType>embedded</DebugType>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\assets\icon.png" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Serilog" Version="2.8.0" />
     <Using Remove="System.Net.Http"/>
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Helpful link to understand the package version ranges: https://learn.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges -->
-    <PackageReference Include="Serilog" Version="[2.8.0,)" />
   </ItemGroup>
 
 </Project>

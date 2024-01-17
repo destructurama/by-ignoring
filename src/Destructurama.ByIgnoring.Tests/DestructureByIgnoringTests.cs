@@ -1,5 +1,3 @@
-﻿using System;
-using System.Linq;
 using System.Linq.Expressions;
 using Destructurama.ByIgnoring.Tests.Support;
 using NUnit.Framework;
@@ -11,7 +9,7 @@ namespace Destructurama.ByIgnoring.Tests
     [TestFixture]
     public class DestructureByIgnoringTests
     {
-        class DestructureMe
+        private class DestructureMe
         {
             public int Id { get; set; }
             public string? Name { get; set; }
@@ -78,7 +76,7 @@ namespace Destructurama.ByIgnoring.Tests
             AssertUnsupportedExpression<DestructureMe>(dm => dm.Password!.Length);
         }
 
-        private void AssertUnsupportedExpression<T>(Expression<Func<T, object?>> expressionThatShouldFail)
+        private static void AssertUnsupportedExpression<T>(Expression<Func<T, object?>> expressionThatShouldFail)
         {
             var ex = Assert.Throws<ArgumentException>(() =>
                     new LoggerConfiguration()
@@ -89,13 +87,13 @@ namespace Destructurama.ByIgnoring.Tests
             Assert.That(ex!.ParamName, Is.EqualTo("ignoredProperty"));
         }
 
-        class DestructureMeWithPropertyWithOnlySetter
+        private class DestructureMeWithPropertyWithOnlySetter
         {
             private string? _onlySetter;
             public int Id { get; set; }
             public string? Name { get; set; }
             public string? Password { get; set; }
-            public string? OnlySetter { set { _onlySetter = value; } }
+            public string? OnlySetter { set => _onlySetter = value; }
         }
 
         [Test]
