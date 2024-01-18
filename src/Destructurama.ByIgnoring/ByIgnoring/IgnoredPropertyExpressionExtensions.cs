@@ -28,7 +28,7 @@ namespace Destructurama.ByIgnoring
         /// <summary>
         /// Obtains the name of a property of the provided TDestructureType using an expression.
         /// </summary>
-        public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object>> ignoredProperty)
+        public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object?>> ignoredProperty)
         {
             var expressionBody = ignoredProperty.Body;
 
@@ -41,20 +41,20 @@ namespace Destructurama.ByIgnoring
                     expressionBody.GetType().Name), nameof(ignoredProperty));
             }
 
-            return memberExpression.Member.Name;
+            return memberExpression!.Member.Name;
         }
 
-        private static MemberExpression GetMemberExpression(Expression expression)
+        private static MemberExpression? GetMemberExpression(Expression expression)
         {
             return GetMemberExpressionForValueType(expression) ?? GetMemberExpressionForReferenceType(expression);
         }
 
-        private static MemberExpression GetMemberExpressionForValueType(Expression expression)
+        private static MemberExpression? GetMemberExpressionForValueType(Expression expression)
         {
             return expression is UnaryExpression bodyOfExpression ? bodyOfExpression.Operand as MemberExpression : null;
         }
 
-        private static MemberExpression GetMemberExpressionForReferenceType(Expression expression)
+        private static MemberExpression? GetMemberExpressionForReferenceType(Expression expression)
         {
             return expression as MemberExpression;
         }

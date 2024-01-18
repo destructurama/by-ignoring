@@ -1,6 +1,4 @@
-# Destructurama.ByIgnoring
-
-[![Build status](https://ci.appveyor.com/api/projects/status/051a1av2s5if8924/branch/master?svg=true)](https://ci.appveyor.com/project/Destructurama/by-ignoring/branch/master)
+# Destructurama.ByIgnoring [![Build status](https://ci.appveyor.com/api/projects/status/051a1av2s5if8924/branch/master?svg=true)](https://ci.appveyor.com/project/Destructurama/by-ignoring/branch/master)
 
 Specify how complex types are logged to Serilog by excluding individual properties.
 
@@ -15,7 +13,7 @@ Mark properties to ignore on target types:
 ```csharp
 Log.Logger = new LoggerConfiguration()
     .Destructure.ByIgnoringProperties<User>(u => u.Password)
-    // Other logger configurationg
+    // Other logger configuration
     .CreateLogger()
 ```
 

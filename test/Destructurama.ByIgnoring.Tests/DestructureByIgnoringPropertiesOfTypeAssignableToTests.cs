@@ -33,7 +33,7 @@ namespace Destructurama.ByIgnoring.Tests
         public void PropertiesAreIgnoredWhenDestructuring<T>(ByIgnoringTestCase<T> testCase)
         {
             // Setup
-            LogEvent evt = null;
+            LogEvent evt = null!;
 
             var log = new LoggerConfiguration()
                 .Destructure.ByIgnoringPropertiesOfTypeAssignableTo(testCase.IgnoredProperties)

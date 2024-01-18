@@ -27,7 +27,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
         // TODO - I can't figure out a way to convert these from ByIgnoringTestCases.DestructureMeSuccessTestCases(), so we'll duplicate the scenarios here and change the type. If someone can figure this out please make them more like ByIgnoringWhereTestCases.cs
         yield return new ByIgnoringTestCase<IDestructureMe>("Ignore id and password should only include name")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => dm.Id, // value type property
                 dm => dm.Password, // reference type property
@@ -46,7 +46,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoringTestCase<IDestructureMe>("Ignore just id should include two others")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => dm.Id, // value type property
             },
@@ -65,7 +65,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoringTestCase<IDestructureMe>("Ignore just password should include two others")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => dm.Password, // reference type property
             },
@@ -84,7 +84,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoringTestCase<IDestructureMe>("Ignoring all properties should produce empty object")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => dm.Password,
                 dm => dm.Name,
@@ -101,7 +101,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoringTestCase<IDestructureMe>("Destructure policy shouldn't come into play for other types")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => dm.Password, // reference type property
             },
@@ -121,7 +121,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
         // TODO - I can't figure out a way to convert these from ByIgnoringTestCases.ShouldThrowExceptionTestCases(), so we'll duplicate the scenarios here and change the type. If someone can figure this out please make them more like ByIgnoringWhereTestCases.cs
         yield return new ByIgnoreExceptionTestCase<IDestructureMe>("ComplexExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => new
                 {
@@ -133,7 +133,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoreExceptionTestCase<IDestructureMe>("MethodExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => dm.ToString(),
             },
@@ -142,7 +142,7 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoreExceptionTestCase<IDestructureMe>("StringLiteralExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
                 dm => "string literal",
             },
@@ -151,9 +151,9 @@ public class ByIgnoringPropertiesOfTypeAssignableToTestCases
 
         yield return new ByIgnoreExceptionTestCase<IDestructureMe>("ChainedPropertyExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<IDestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<IDestructureMe, object?>>[]
             {
-                dm => dm.Password.Length
+                dm => dm.Password!.Length
             },
             ExceptionType = typeof(ArgumentException),
         };

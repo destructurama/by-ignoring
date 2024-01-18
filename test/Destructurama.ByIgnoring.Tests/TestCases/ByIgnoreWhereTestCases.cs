@@ -82,7 +82,7 @@ public class ByIgnoreWhereTestCases
     {
         yield return new ByIgnoreWhereExceptionTestCase("null handleDestructuringPredicate")
         {
-            HandleDestructuringPredicate = null,
+            HandleDestructuringPredicate = null!,
             IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
             {
                 pi => pi.Name == nameof(DestructureMe.Id),
@@ -94,14 +94,14 @@ public class ByIgnoreWhereTestCases
         yield return new ByIgnoreWhereExceptionTestCase("null ignoredPropertyPredicates")
         {
             HandleDestructuringPredicate = obj => obj is IDestructureMe,
-            IgnoredPropertyPredicates = null,
+            IgnoredPropertyPredicates = null!,
             ExceptionType = typeof(ArgumentNullException),
         };
 
         yield return new ByIgnoreWhereExceptionTestCase("null handleDestructuringPredicate and null ignoredPropertyPredicates")
         {
-            HandleDestructuringPredicate = null,
-            IgnoredPropertyPredicates = null,
+            HandleDestructuringPredicate = null!,
+            IgnoredPropertyPredicates = null!,
             ExceptionType = typeof(ArgumentNullException),
         };
 
@@ -120,7 +120,7 @@ public class ByIgnoreWhereTestCases
             {
                 HandleDestructuringPredicate = obj => obj.GetType() == typeof(T),
                 IgnoredPropertyPredicates = x.IgnoredProperties
-                    .Select<Expression<Func<T, object>>, Func<PropertyInfo, bool>>(
+                    .Select<Expression<Func<T, object?>>, Func<PropertyInfo, bool>>(
                         // It's also not great that we're using sut code - GetPropertyNameFromExpression() - in our test. This is edging towards tautological. But I've got nothing better at the moment other than duplicating scenarios
                         destructureMe => propertyInfo => propertyInfo.Name == destructureMe.GetPropertyNameFromExpression())
                     .ToArray(),
@@ -132,15 +132,15 @@ public class ByIgnoreWhereTestCases
 
 public record ByIgnoreWhereTestCase(string TestName)
 {
-    public Func<object, bool> HandleDestructuringPredicate { get; set; }
-    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
-    public object ObjectToDestructure { get; set; }
-    public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; }
+    public Func<object, bool> HandleDestructuringPredicate { get; set; } = null!;
+    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; } = null!;
+    public object? ObjectToDestructure { get; set; }
+    public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; } = null!;
 }
 
 public record ByIgnoreWhereExceptionTestCase(string TestName)
 {
-    public Func<object, bool> HandleDestructuringPredicate { get; set; }
-    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; }
-    public Type ExceptionType { get; set; }
+    public Func<object, bool> HandleDestructuringPredicate { get; set; } = null!;
+    public Func<PropertyInfo, bool>[] IgnoredPropertyPredicates { get; set; } = null!;
+    public Type? ExceptionType { get; set; }
 }

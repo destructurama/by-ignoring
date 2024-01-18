@@ -22,15 +22,15 @@ namespace Destructurama.ByIgnoring.Tests.TestCases;
 
 public record ByIgnoringTestCase<TDestructure>(string TestName)
 {
-    public Expression<Func<TDestructure, object>>[] IgnoredProperties { get; set; }
-    public object ObjectToDestructure { get; set; }
-    public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; }
+    public Expression<Func<TDestructure, object?>>[] IgnoredProperties { get; set; } = null!;
+    public object? ObjectToDestructure { get; set; }
+    public IDictionary<string, LogEventPropertyValue> ExpectedPropertiesLogged { get; set; } = null!;
 }
 
 public record ByIgnoreExceptionTestCase<TDestructure>(string TestName)
 {
-    public Expression<Func<TDestructure, object>>[] IgnoredProperties { get; set; }
-    public Type ExceptionType { get; set; }
+    public Expression<Func<TDestructure, object?>>[] IgnoredProperties { get; set; } = null!;
+    public Type? ExceptionType { get; set; }
 }
 
 public class ByIgnoringTestCases
@@ -39,7 +39,7 @@ public class ByIgnoringTestCases
     {
         yield return new ByIgnoringTestCase<DestructureMe>("Ignore id and password should only include name")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => dm.Id, // value type property
                 dm => dm.Password, // reference type property
@@ -58,7 +58,7 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoringTestCase<DestructureMe>("Ignore just id should include two others")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => dm.Id, // value type property
             },
@@ -77,7 +77,7 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoringTestCase<DestructureMe>("Ignore just password should include two others")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => dm.Password, // reference type property
             },
@@ -96,7 +96,7 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoringTestCase<DestructureMe>("Ignoring all properties should produce empty object")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => dm.Password,
                 dm => dm.Name,
@@ -113,7 +113,7 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoringTestCase<DestructureMe>("Destructure policy shouldn't come into play for other types")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => dm.Password, // reference type property
             },
@@ -132,7 +132,7 @@ public class ByIgnoringTestCases
     {
         yield return new ByIgnoringTestCase<DestructureMeWithPropertyWithOnlySetter>("ClassWithAPropertyOnlyWithSetterDoesNotCrash")
         {
-            IgnoredProperties = new Expression<Func<DestructureMeWithPropertyWithOnlySetter, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMeWithPropertyWithOnlySetter, object?>>[]
             {
                 dm => dm.Id, // value type property
                 dm => dm.Password, // reference type property
@@ -158,7 +158,7 @@ public class ByIgnoringTestCases
     {
         yield return new ByIgnoreExceptionTestCase<DestructureMe>("ComplexExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => new
                 {
@@ -170,7 +170,7 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoreExceptionTestCase<DestructureMe>("MethodExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => dm.ToString(),
             },
@@ -179,7 +179,7 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoreExceptionTestCase<DestructureMe>("StringLiteralExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
                 dm => "string literal",
             },
@@ -188,9 +188,9 @@ public class ByIgnoringTestCases
 
         yield return new ByIgnoreExceptionTestCase<DestructureMe>("ChainedPropertyExpressionsFail")
         {
-            IgnoredProperties = new Expression<Func<DestructureMe, object>>[]
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
             {
-                dm => dm.Password.Length
+                dm => dm.Password!.Length
             },
             ExceptionType = typeof(ArgumentException),
         };
@@ -198,15 +198,14 @@ public class ByIgnoringTestCases
 
     public class DestructureMeWithPropertyWithOnlySetter
     {
-        private string _onlySetter;
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string OnlySetter { set { _onlySetter = value; } }
+        public string? Name { get; set; }
+        public string? Password { get; set; }
+        public string OnlySetter { set { } }
     }
 
     public class SomeOtherType
     {
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
     }
 }
