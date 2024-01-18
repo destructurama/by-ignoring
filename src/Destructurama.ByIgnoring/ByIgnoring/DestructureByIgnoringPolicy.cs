@@ -23,7 +23,7 @@ using Serilog.Events;
 
 namespace Destructurama.ByIgnoring
 {
-    class DestructureByIgnoringPolicy : IDestructuringPolicy
+    internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
     {
         private readonly Func<object, bool> _handleDestructuringPredicate;
         private readonly Func<PropertyInfo, bool>[] _ignoredPropertyPredicates;
