@@ -23,13 +23,14 @@ using Serilog.Configuration;
 namespace Destructurama
 {
     /// <summary>
-    /// Adds the Destructure.ByIgnoringProperties() extension to <see cref="LoggerDestructuringConfiguration"/>.
+    /// Adds the Destructure.ByIgnoringProperties() family of extension methods to <see cref="LoggerDestructuringConfiguration"/>.
     /// </summary>
     public static class LoggerConfigurationIgnoreExtensions
     {
         /// <summary>
-        /// Destructure.ByIgnoringProperties takes one or more expressions that access a property, e.g. obj => obj.Property,
-        /// and uses the property names to determine which properties are ignored when an object of type TDestructure is destructured by serilog.
+        /// Takes one or more expressions that access a property, e.g. obj => obj.Property,
+        /// and uses the property names to determine which properties are ignored when an
+        /// object of type <typeparamref name="TDestructure"/> is destructured by Serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="ignoredProperties">The function expressions that expose the properties to ignore.</param>
@@ -38,8 +39,9 @@ namespace Destructurama
             configuration.ByIgnoringPropertiesWhere(obj => obj.GetType() == typeof(TDestructure), ignoredProperties);
 
         /// <summary>
-        /// Destructure.ByIgnoringPropertiesOfTypeAssignableTo takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
-        /// properties are ignored when an object of type assignable to TDestructure is destructured by serilog.
+        /// Takes one or more expressions that access a property, e.g. obj => obj.Property,
+        /// and uses the property names to determine which properties are ignored when an
+        /// object of type assignable to <typeparamref name="TDestructure"/> is destructured by Serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="ignoredProperties">The function expressions that expose the properties to ignore.</param>
@@ -48,8 +50,9 @@ namespace Destructurama
             configuration.ByIgnoringPropertiesWhere(obj => obj is TDestructure, ignoredProperties);
 
         /// <summary>
-        /// Destructure.ByIgnoringPropertiesWhere takes one or more expressions that access a property, e.g. obj => obj.Property, and uses the property names to determine which
-        /// properties are ignored when an object for which handleDestructuringPredicate returns true is destructured by serilog.
+        /// Takes one or more expressions that access a property, e.g. obj => obj.Property,
+        /// and uses the property names to determine which properties are ignored when an
+        /// object for which <paramref name="handleDestructuringPredicate"/> returns <see langword="true"/> is destructured by Serilog.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="handleDestructuringPredicate">Given an object to destructure, should this policy take effect?</param>
@@ -66,12 +69,13 @@ namespace Destructurama
         }
 
         /// <summary>
-        /// Destructure.ByIgnoringPropertiesWhere takes one or more ignoredProperty predicates that when true indicates a given property is to be ignored when destructured by serilog.
-        /// This ignoring only comes into play for an object where destructurePredicate returns true.
+        /// Takes one or more predicates that when <see langword="true"/> indicates a given property is to
+        /// be ignored when destructured by Serilog. This ignoring only comes into play for an object where
+        /// <paramref name="handleDestructuringPredicate"/> returns true.
         /// </summary>
         /// <param name="configuration">The logger configuration to apply configuration to.</param>
         /// <param name="handleDestructuringPredicate">Given an object to destructure, should this policy take effect?</param>
-        /// <param name="ignoredPropertyPredicates">When the predicate returns true for a provided property, said will be ignored when destructured by serilog.</param>
+        /// <param name="ignoredPropertyPredicates">When the predicate returns true for a provided property, said will be ignored when destructured by Serilog.</param>
         /// <returns>An object allowing configuration to continue.</returns>
         public static LoggerConfiguration ByIgnoringPropertiesWhere(this LoggerDestructuringConfiguration configuration, Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates) =>
             configuration.With(new DestructureByIgnoringPolicy(handleDestructuringPredicate, ignoredPropertyPredicates));
