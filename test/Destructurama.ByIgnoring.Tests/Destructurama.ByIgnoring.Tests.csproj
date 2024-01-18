@@ -2,9 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <RootNamespace>Destructurama.ByIgnoring.Tests</RootNamespace>
-    <AssemblyName>Destructurama.ByIgnoring.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
