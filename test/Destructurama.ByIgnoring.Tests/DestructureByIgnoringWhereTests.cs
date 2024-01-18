@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using Destructurama.ByIgnoring.Tests.Support;
 using Destructurama.ByIgnoring.Tests.TestCases;
 using FluentAssertions;
@@ -25,17 +27,16 @@ using Serilog.Events;
 namespace Destructurama.ByIgnoring.Tests
 {
     [TestFixture]
-    public class DestructureByIgnoringTests
+    public class DestructureByIgnoringWhereTests
     {
-        [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases))]
-        [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.OnlySetterSuccessTestCases))]
-        public void PropertiesAreIgnoredWhenDestructuring<T>(ByIgnoringTestCase<T> testCase)
+        [TestCaseSource(typeof(ByIgnoreWhereTestCases), nameof(ByIgnoreWhereTestCases.ShouldDestructureSuccessfullyTestCases))]
+        public void PropertiesAreIgnoredWhenDestructuring(ByIgnoreWhereTestCase testCase)
         {
             // Setup
             LogEvent evt = null!;
 
             var log = new LoggerConfiguration()
-                .Destructure.ByIgnoringProperties(testCase.IgnoredProperties)
+                .Destructure.ByIgnoringPropertiesWhere(testCase.HandleDestructuringPredicate, testCase.IgnoredPropertyPredicates)
                 .WriteTo.Sink(new DelegatingSink(e => evt = e))
                 .CreateLogger();
 
@@ -49,14 +50,14 @@ namespace Destructurama.ByIgnoring.Tests
             props.Should().BeEquivalentTo(testCase.ExpectedPropertiesLogged, options => options.UsingSerilogTypeComparisons());
         }
 
-        [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.ShouldThrowExceptionTestCases))]
-        public void ExceptionThrownWhenRegisteringDestructure<T>(ByIgnoreExceptionTestCase<T> testCase)
+        [TestCaseSource(typeof(ByIgnoreWhereTestCases), nameof(ByIgnoreWhereTestCases.ShouldThrowExceptionTestCases))]
+        public void ExceptionThrownWhenRegisteringDestructure(ByIgnoreWhereExceptionTestCase testCase)
         {
             // Setup
             var config = new LoggerConfiguration();
 
             // Execute
-            Action configureByIgnoringAction = () => config.Destructure.ByIgnoringProperties(testCase.IgnoredProperties);
+            Action configureByIgnoringAction = () => config.Destructure.ByIgnoringPropertiesWhere(testCase.HandleDestructuringPredicate, testCase.IgnoredPropertyPredicates);
 
             // Verify
             configureByIgnoringAction
