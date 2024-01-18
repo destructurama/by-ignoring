@@ -5,8 +5,8 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	<SignAssembly>true</SignAssembly>
-	<AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\assets\Destructurama.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
 </Project>
