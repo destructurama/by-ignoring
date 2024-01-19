@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Destructurama.ByIgnoring.Tests.TestCases;
+namespace Destructurama.ByIgnoring.Tests.Support;
 
-public interface IDestructureMe
+public class DestructureMeThrows
 {
     public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? Password { get; set; }
+    public string? BadProperty => throw new FormatException("oops");
 }

@@ -18,6 +18,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using Serilog;
 using Serilog.Events;
+using Shouldly;
 
 namespace Destructurama.ByIgnoring.Tests;
 
@@ -60,5 +61,27 @@ public class DestructureByIgnoringTests
             .Should()
             .Throw<Exception>()
             .Where(ex => ex.GetType() == testCase.ExceptionType);
+    }
+
+    [Test]
+    public void Throwing_Accessor_Should_Be_Handled()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoringProperties<DestructureMeThrows>(o => o.Id)
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeThrows();
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("BadProperty");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("The property accessor threw an exception: FormatException");
     }
 }
