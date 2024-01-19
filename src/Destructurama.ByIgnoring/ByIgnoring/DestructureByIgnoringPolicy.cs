@@ -60,7 +60,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
             .Where(p => p.GetIndexParameters().Length == 0);
 
         return eligibleRuntimeProperties
-            .Where(p => _ignoredPropertyPredicates.All(ignoreFunc => ignoreFunc(p) == false))
+            .Where(p => _ignoredPropertyPredicates.All(ignoreFunc => !ignoreFunc(p)))
             .ToArray();
     }
 
