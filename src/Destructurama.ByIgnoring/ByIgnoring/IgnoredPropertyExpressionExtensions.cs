@@ -14,48 +14,47 @@
 
 using System.Linq.Expressions;
 
-namespace Destructurama.ByIgnoring
+namespace Destructurama.ByIgnoring;
+
+/// <summary>
+/// Extension methods used to obtain property names.
+/// </summary>
+internal static class IgnoredPropertyExpressionExtensions
 {
+    private const string EXPRESSION_NOT_SUPPORTED = "A property name cannot be retrieved from function expression with body of type {0}. " +
+                                                  "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
+
     /// <summary>
-    /// Extension methods used to obtain property names.
+    /// Obtains the name of a property of the provided <typeparamref name="TDestructureType"/> using an expression.
     /// </summary>
-    internal static class IgnoredPropertyExpressionExtensions
+    public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object?>> ignoredProperty)
     {
-        private const string EXPRESSION_NOT_SUPPORTED = "A property name cannot be retrieved from function expression with body of type {0}. " +
-                                                      "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
+        var expressionBody = ignoredProperty.Body;
 
-        /// <summary>
-        /// Obtains the name of a property of the provided <typeparamref name="TDestructureType"/> using an expression.
-        /// </summary>
-        public static string GetPropertyNameFromExpression<TDestructureType>(this Expression<Func<TDestructureType, object?>> ignoredProperty)
+        var memberExpression = GetMemberExpression(expressionBody);
+
+        var isNotSimplePropertyAccess = memberExpression == null || GetMemberExpression(memberExpression.Expression) != null;
+        if (isNotSimplePropertyAccess)
         {
-            var expressionBody = ignoredProperty.Body;
-
-            var memberExpression = GetMemberExpression(expressionBody);
-
-            var isNotSimplePropertyAccess = memberExpression == null || GetMemberExpression(memberExpression.Expression) != null;
-            if (isNotSimplePropertyAccess)
-            {
-                throw new ArgumentException(string.Format(EXPRESSION_NOT_SUPPORTED,
-                    expressionBody.GetType().Name), nameof(ignoredProperty));
-            }
-
-            return memberExpression!.Member.Name;
+            throw new ArgumentException(string.Format(EXPRESSION_NOT_SUPPORTED,
+                expressionBody.GetType().Name), nameof(ignoredProperty));
         }
 
-        private static MemberExpression? GetMemberExpression(Expression expression)
-        {
-            return GetMemberExpressionForValueType(expression) ?? GetMemberExpressionForReferenceType(expression);
-        }
+        return memberExpression!.Member.Name;
+    }
 
-        private static MemberExpression? GetMemberExpressionForValueType(Expression expression)
-        {
-            return expression is UnaryExpression bodyOfExpression ? bodyOfExpression.Operand as MemberExpression : null;
-        }
+    private static MemberExpression? GetMemberExpression(Expression expression)
+    {
+        return GetMemberExpressionForValueType(expression) ?? GetMemberExpressionForReferenceType(expression);
+    }
 
-        private static MemberExpression? GetMemberExpressionForReferenceType(Expression expression)
-        {
-            return expression as MemberExpression;
-        }
+    private static MemberExpression? GetMemberExpressionForValueType(Expression expression)
+    {
+        return expression is UnaryExpression bodyOfExpression ? bodyOfExpression.Operand as MemberExpression : null;
+    }
+
+    private static MemberExpression? GetMemberExpressionForReferenceType(Expression expression)
+    {
+        return expression as MemberExpression;
     }
 }
