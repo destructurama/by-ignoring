@@ -18,81 +18,78 @@ using Serilog.Core;
 using Serilog.Debugging;
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring
+namespace Destructurama.ByIgnoring;
+
+internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
 {
-    internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
+    private readonly Func<object, bool> _handleDestructuringPredicate;
+    private readonly Func<PropertyInfo, bool>[] _ignoredPropertyPredicates;
+
+    private readonly ConcurrentDictionary<Type, PropertyInfo[]> _cache = new();
+
+    public DestructureByIgnoringPolicy(Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates)
     {
-        private readonly Func<object, bool> _handleDestructuringPredicate;
-        private readonly Func<PropertyInfo, bool>[] _ignoredPropertyPredicates;
+        _handleDestructuringPredicate = handleDestructuringPredicate ?? throw new ArgumentNullException(nameof(handleDestructuringPredicate));
+        _ignoredPropertyPredicates = ignoredPropertyPredicates ?? throw new ArgumentNullException(nameof(ignoredPropertyPredicates));
 
-        private readonly ConcurrentDictionary<Type, PropertyInfo[]> _cache = new();
+        if (ignoredPropertyPredicates.Length == 0)
+            throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "At least one ignore rule must be supplied");
+    }
 
-        public DestructureByIgnoringPolicy(Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates)
+    public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue? result)
+    {
+        if (value == null || !_handleDestructuringPredicate(value))
         {
-            _handleDestructuringPredicate = handleDestructuringPredicate ?? throw new ArgumentNullException(nameof(handleDestructuringPredicate));
-            _ignoredPropertyPredicates = ignoredPropertyPredicates ?? throw new ArgumentNullException(nameof(ignoredPropertyPredicates));
+            result = null;
+            return false;
+        }
 
-            if (!ignoredPropertyPredicates.Any())
+        var type = value.GetType();
+        var includedProperties = _cache.GetOrAdd(type, GetIncludedProperties);
+
+        result = BuildStructure(value, propertyValueFactory, includedProperties, type);
+
+        return true;
+    }
+
+    private PropertyInfo[] GetIncludedProperties(Type type)
+    {
+        var eligibleRuntimeProperties = type.GetRuntimeProperties()
+            .Where(p => p.CanRead)
+            .Where(p => p.GetMethod?.IsStatic != true)
+            .Where(p => p.GetIndexParameters().Length == 0);
+
+        return eligibleRuntimeProperties
+            .Where(p => _ignoredPropertyPredicates.All(ignoreFunc => !ignoreFunc(p)))
+            .ToArray();
+    }
+
+    private static StructureValue BuildStructure(object value, ILogEventPropertyValueFactory propertyValueFactory, IEnumerable<PropertyInfo> propertiesToInclude, Type destructureType)
+    {
+        var structureProperties = new List<LogEventProperty>();
+        foreach (var propertyInfo in propertiesToInclude)
+        {
+            object propertyValue;
+            try
             {
-                throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "at least one ignore rule must be supplied");
+                propertyValue = propertyInfo.GetValue(value);
             }
-        }
-
-        public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue? result)
-        {
-            if (value == null || !_handleDestructuringPredicate(value))
+            catch (TargetInvocationException ex)
             {
-                result = null;
-                return false;
-            }
-
-            var type = value.GetType();
-            var includedProperties = _cache.GetOrAdd(type, GetIncludedProperties);
-
-            result = BuildStructure(value, propertyValueFactory, includedProperties, type);
-
-            return true;
-        }
-
-        private PropertyInfo[] GetIncludedProperties(Type type)
-        {
-            var eligibleRuntimeProperties = type.GetRuntimeProperties()
-                .Where(p => p.CanRead)
-                .Where(p => p.GetMethod?.IsStatic != true)
-                .Where(p => p.GetIndexParameters().Length == 0);
-
-            return eligibleRuntimeProperties
-                .Where(p => _ignoredPropertyPredicates.All(ignoreFunc => ignoreFunc(p) == false))
-                .ToArray();
-        }
-
-        private static LogEventPropertyValue BuildStructure(object value, ILogEventPropertyValueFactory propertyValueFactory, IEnumerable<PropertyInfo> propertiesToInclude, Type destructureType)
-        {
-            var structureProperties = new List<LogEventProperty>();
-            foreach (var propertyInfo in propertiesToInclude)
-            {
-                object propertyValue;
-                try
-                {
-                    propertyValue = propertyInfo.GetValue(value);
-                }
-                catch (TargetInvocationException ex)
-                {
-                    SelfLog.WriteLine("The property accessor {0} threw exception {1}", propertyInfo, ex);
-                    propertyValue = "The property accessor threw an exception: " + ex.InnerException.GetType().Name;
-                }
-
-                var logEventPropertyValue = BuildLogEventProperty(propertyValue, propertyValueFactory);
-
-                structureProperties.Add(new LogEventProperty(propertyInfo.Name, logEventPropertyValue));
+                SelfLog.WriteLine("The property accessor {0} threw exception {1}", propertyInfo, ex);
+                propertyValue = "The property accessor threw an exception: " + ex.InnerException.GetType().Name;
             }
 
-            return new StructureValue(structureProperties, destructureType.Name);
+            var logEventPropertyValue = BuildLogEventProperty(propertyValue, propertyValueFactory);
+
+            structureProperties.Add(new LogEventProperty(propertyInfo.Name, logEventPropertyValue));
         }
 
-        private static LogEventPropertyValue BuildLogEventProperty(object propertyValue, ILogEventPropertyValueFactory propertyValueFactory)
-        {
-            return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
-        }
+        return new StructureValue(structureProperties, destructureType.Name);
+    }
+
+    private static LogEventPropertyValue BuildLogEventProperty(object propertyValue, ILogEventPropertyValueFactory propertyValueFactory)
+    {
+        return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
     }
 }
