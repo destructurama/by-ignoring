@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Linq.Expressions;
 using Destructurama.ByIgnoring.Tests.Support;
 using Destructurama.ByIgnoring.Tests.TestCases;
 using FluentAssertions;
