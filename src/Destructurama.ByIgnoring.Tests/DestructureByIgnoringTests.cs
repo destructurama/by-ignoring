@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Serilog Contributors
+// Copyright 2017 Serilog Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Linq;
-using System.Linq.Expressions;
 using Destructurama.ByIgnoring.Tests.Support;
 using Destructurama.ByIgnoring.Tests.TestCases;
 using FluentAssertions;
@@ -25,18 +22,17 @@ using Serilog.Events;
 namespace Destructurama.ByIgnoring.Tests
 {
     [TestFixture]
-    public class DestructureByIgnoringPropertiesOfTypeAssignableToTests
+    public class DestructureByIgnoringTests
     {
-        [TestCaseSource(typeof(ByIgnoringPropertiesOfTypeAssignableToTestCases), nameof(ByIgnoringPropertiesOfTypeAssignableToTestCases.IDestructureMeSuccessTestCases))]
+        [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases))]
         [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.OnlySetterSuccessTestCases))]
-        [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases))] // a type should be assignable to itself, so these should all pass
         public void PropertiesAreIgnoredWhenDestructuring<T>(ByIgnoringTestCase<T> testCase)
         {
             // Setup
             LogEvent evt = null!;
 
             var log = new LoggerConfiguration()
-                .Destructure.ByIgnoringPropertiesOfTypeAssignableTo(testCase.IgnoredProperties)
+                .Destructure.ByIgnoringProperties(testCase.IgnoredProperties)
                 .WriteTo.Sink(new DelegatingSink(e => evt = e))
                 .CreateLogger();
 
@@ -50,14 +46,14 @@ namespace Destructurama.ByIgnoring.Tests
             props.Should().BeEquivalentTo(testCase.ExpectedPropertiesLogged, options => options.UsingSerilogTypeComparisons());
         }
 
-        [TestCaseSource(typeof(ByIgnoringPropertiesOfTypeAssignableToTestCases), nameof(ByIgnoringPropertiesOfTypeAssignableToTestCases.ShouldThrowExceptionTestCases))]
+        [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.ShouldThrowExceptionTestCases))]
         public void ExceptionThrownWhenRegisteringDestructure<T>(ByIgnoreExceptionTestCase<T> testCase)
         {
             // Setup
             var config = new LoggerConfiguration();
 
             // Execute
-            Action configureByIgnoringAction = () => config.Destructure.ByIgnoringPropertiesOfTypeAssignableTo(testCase.IgnoredProperties);
+            Action configureByIgnoringAction = () => config.Destructure.ByIgnoringProperties(testCase.IgnoredProperties);
 
             // Verify
             configureByIgnoringAction

@@ -1,0 +1,14 @@
+tests:
+  - src/Destructurama.ByIgnoring.Tests/**/*
+
+CI:
+  - .github/workflows/**/*
+  - .github/dependabot.yml
+  - .github/codecov.yml
+  - .github/labeler.yml
+
+code style:
+  - .editorconfig
+
+documentation:
+  - README.md

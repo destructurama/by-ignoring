@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Linq.Expressions;
 
 namespace Destructurama.ByIgnoring
@@ -22,7 +21,7 @@ namespace Destructurama.ByIgnoring
     /// </summary>
     internal static class IgnoredPropertyExpressionExtensions
     {
-        private const string expressionNotSupported = "A property name cannot be retrieved from function expression with body of type {0}. " +
+        private const string EXPRESSION_NOT_SUPPORTED = "A property name cannot be retrieved from function expression with body of type {0}. " +
                                                       "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace Destructurama.ByIgnoring
             var isNotSimplePropertyAccess = memberExpression == null || GetMemberExpression(memberExpression.Expression) != null;
             if (isNotSimplePropertyAccess)
             {
-                throw new ArgumentException(string.Format(expressionNotSupported,
+                throw new ArgumentException(string.Format(EXPRESSION_NOT_SUPPORTED,
                     expressionBody.GetType().Name), nameof(ignoredProperty));
             }
 

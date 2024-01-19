@@ -14,11 +14,9 @@
 
 namespace Destructurama.ByIgnoring.Tests.TestCases;
 
-public class DestructureMe : IDestructureMe
+public interface IDestructureMe
 {
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Password { get; set; }
-    public static string SomeStatic { get; set; } = "AAA";
-    public string this[int index] => "value";
 }
