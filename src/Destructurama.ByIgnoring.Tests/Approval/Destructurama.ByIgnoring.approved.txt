@@ -1,0 +1,10 @@
+namespace Destructurama
+{
+    public static class LoggerConfigurationIgnoreExtensions
+    {
+        public static Serilog.LoggerConfiguration ByIgnoringProperties<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, params System.Linq.Expressions.Expression<System.Func<TDestructure, object?>>[] ignoredProperties) { }
+        public static Serilog.LoggerConfiguration ByIgnoringPropertiesOfTypeAssignableTo<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, params System.Linq.Expressions.Expression<System.Func<TDestructure, object?>>[] ignoredProperties) { }
+        public static Serilog.LoggerConfiguration ByIgnoringPropertiesWhere(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, System.Func<object, bool> handleDestructuringPredicate, params System.Func<System.Reflection.PropertyInfo, bool>[] ignoredPropertyPredicates) { }
+        public static Serilog.LoggerConfiguration ByIgnoringPropertiesWhere<TDestruture>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, System.Func<object, bool> handleDestructuringPredicate, params System.Linq.Expressions.Expression<System.Func<TDestruture, object?>>[] ignoredProperties) { }
+    }
+}
