@@ -37,6 +37,15 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger()
 ```
 
+Mark properties to ignore on assignable types:
+
+```csharp
+Log.Logger = new LoggerConfiguration()
+    .Destructure.ByIgnoringPropertiesOfTypeAssignableTo<User>(u => u.Password)
+    // Other logger configuration
+    .CreateLogger()
+```
+
 When these types are destructured, all instance (that is not static) properties except the specified ones will be passed through:
 
 ```csharp
