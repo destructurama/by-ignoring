@@ -33,7 +33,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
         _ignoredPropertyPredicates = ignoredPropertyPredicates ?? throw new ArgumentNullException(nameof(ignoredPropertyPredicates));
 
         if (ignoredPropertyPredicates.Length == 0)
-            throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "at least one ignore rule must be supplied");
+            throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "At least one ignore rule must be supplied");
     }
 
     public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue? result)

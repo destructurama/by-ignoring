@@ -33,7 +33,7 @@ internal static class IgnoredPropertyExpressionExtensions
 
         var memberExpression = GetMemberExpression(expressionBody);
 
-        var isNotSimplePropertyAccess = memberExpression == null || GetMemberExpression(memberExpression.Expression) != null;
+        bool isNotSimplePropertyAccess = memberExpression == null || GetMemberExpression(memberExpression.Expression) != null;
         if (isNotSimplePropertyAccess)
         {
             throw new ArgumentException(string.Format(EXPRESSION_NOT_SUPPORTED,
