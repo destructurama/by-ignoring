@@ -12,8 +12,10 @@ CI:
 
 code style:
 - changed-files:
-  - .editorconfig
+  - any-glob-to-any-file:
+    - .editorconfig
 
 documentation:
 - changed-files:
-  - README.md
+  - any-glob-to-any-file:
+    - README.md
