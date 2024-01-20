@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Destructurama.ByIgnoring.Tests.TestCases;
+namespace Destructurama.ByIgnoring.Tests.Support;
 
-public class DestructureMe : IDestructureMe
+public interface IDestructureMe
 {
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Password { get; set; }
-    public static string SomeStatic { get; set; } = "AAA";
-    public string this[int index] => "value";
 }

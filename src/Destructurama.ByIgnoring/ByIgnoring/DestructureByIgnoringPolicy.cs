@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Concurrent;
+using System.Linq.Expressions;
 using System.Reflection;
 using Serilog.Core;
 using Serilog.Debugging;
@@ -25,7 +26,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
     private readonly Func<object, bool> _handleDestructuringPredicate;
     private readonly Func<PropertyInfo, bool>[] _ignoredPropertyPredicates;
 
-    private readonly ConcurrentDictionary<Type, PropertyInfo[]> _cache = new();
+    private readonly ConcurrentDictionary<Type, (PropertyInfo Property, Func<object, object> Accessor)[]> _cache = new();
 
     public DestructureByIgnoringPolicy(Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates)
     {
@@ -52,7 +53,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
         return true;
     }
 
-    private PropertyInfo[] GetIncludedProperties(Type type)
+    private (PropertyInfo Property, Func<object, object> Accessor)[] GetIncludedProperties(Type type)
     {
         var eligibleRuntimeProperties = type.GetRuntimeProperties()
             .Where(p => p.CanRead)
@@ -61,23 +62,33 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
 
         return eligibleRuntimeProperties
             .Where(p => _ignoredPropertyPredicates.All(ignoreFunc => !ignoreFunc(p)))
+            .Select(p => (p, Compile(p)))
             .ToArray();
+
+        static Func<object, object> Compile(PropertyInfo property)
+        {
+            var objParameterExpr = Expression.Parameter(typeof(object), "instance");
+            var instanceExpr = Expression.TypeAs(objParameterExpr, property.DeclaringType);
+            var propertyExpr = Expression.Property(instanceExpr, property);
+            var propertyObjExpr = Expression.Convert(propertyExpr, typeof(object));
+            return Expression.Lambda<Func<object, object>>(propertyObjExpr, objParameterExpr).Compile();
+        }
     }
 
-    private static StructureValue BuildStructure(object value, ILogEventPropertyValueFactory propertyValueFactory, IEnumerable<PropertyInfo> propertiesToInclude, Type destructureType)
+    private static StructureValue BuildStructure(object value, ILogEventPropertyValueFactory propertyValueFactory, (PropertyInfo Property, Func<object, object> Accessor)[] propertiesToInclude, Type destructureType)
     {
         var structureProperties = new List<LogEventProperty>();
-        foreach (var propertyInfo in propertiesToInclude)
+        foreach (var (propertyInfo, accessor) in propertiesToInclude)
         {
             object propertyValue;
             try
             {
-                propertyValue = propertyInfo.GetValue(value);
+                propertyValue = accessor(value);
             }
-            catch (TargetInvocationException ex)
+            catch (Exception ex)
             {
                 SelfLog.WriteLine("The property accessor {0} threw exception {1}", propertyInfo, ex);
-                propertyValue = "The property accessor threw an exception: " + ex.InnerException.GetType().Name;
+                propertyValue = "The property accessor threw an exception: " + ex.GetType().Name;
             }
 
             var logEventPropertyValue = BuildLogEventProperty(propertyValue, propertyValueFactory);
