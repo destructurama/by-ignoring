@@ -19,21 +19,20 @@ using NUnit.Framework;
 using Serilog;
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring.Tests;
+namespace Destructurama.ByIgnoring.Tests.NewFolder;
 
 [TestFixture]
-public class DestructureByIgnoringPropertiesOfTypeAssignableToTests
+public class DestructureByIgnoringTests
 {
-    [TestCaseSource(typeof(ByIgnoringPropertiesOfTypeAssignableToTestCases), nameof(ByIgnoringPropertiesOfTypeAssignableToTestCases.IDestructureMeSuccessTestCases))]
+    [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases))]
     [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.OnlySetterSuccessTestCases))]
-    [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases))] // a type should be assignable to itself, so these should all pass
     public void PropertiesAreIgnoredWhenDestructuring<T>(ByIgnoringTestCase<T> testCase)
     {
         // Setup
         LogEvent evt = null!;
 
         var log = new LoggerConfiguration()
-            .Destructure.ByIgnoringPropertiesOfTypeAssignableTo(testCase.IgnoredProperties)
+            .Destructure.ByIgnoringProperties(testCase.IgnoredProperties)
             .WriteTo.Sink(new DelegatingSink(e => evt = e))
             .CreateLogger();
 
@@ -47,14 +46,14 @@ public class DestructureByIgnoringPropertiesOfTypeAssignableToTests
         props.Should().BeEquivalentTo(testCase.ExpectedPropertiesLogged, options => options.UsingSerilogTypeComparisons());
     }
 
-    [TestCaseSource(typeof(ByIgnoringPropertiesOfTypeAssignableToTestCases), nameof(ByIgnoringPropertiesOfTypeAssignableToTestCases.ShouldThrowExceptionTestCases))]
+    [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.ShouldThrowExceptionTestCases))]
     public void ExceptionThrownWhenRegisteringDestructure<T>(ByIgnoreExceptionTestCase<T> testCase)
     {
         // Setup
         var config = new LoggerConfiguration();
 
         // Execute
-        Action configureByIgnoringAction = () => config.Destructure.ByIgnoringPropertiesOfTypeAssignableTo(testCase.IgnoredProperties);
+        Action configureByIgnoringAction = () => config.Destructure.ByIgnoringProperties(testCase.IgnoredProperties);
 
         // Verify
         configureByIgnoringAction
