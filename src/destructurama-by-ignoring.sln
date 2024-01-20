@@ -5,6 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B827DF-B6A0-41E2-8554-2B8200F5238E}"
 	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
 		..\CHANGES.md = ..\CHANGES.md
@@ -34,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B1147EF1-10FB-4729-9BD7-70BA461D2F94}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\benchmarks.yml = ..\.github\workflows\benchmarks.yml
 		..\.github\workflows\codeql-analysis.yml = ..\.github\workflows\codeql-analysis.yml
 		..\.github\workflows\label.yml = ..\.github\workflows\label.yml
 		..\.github\workflows\publish-preview.yml = ..\.github\workflows\publish-preview.yml
@@ -41,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\stale.yml = ..\.github\workflows\stale.yml
 		..\.github\workflows\test.yml = ..\.github\workflows\test.yml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{1EFD1D05-5A06-4E7D-B917-EC53111DD8A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +60,10 @@ Global
 		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DFFED22-15E5-484E-B0F5-B583E78EB850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EFD1D05-5A06-4E7D-B917-EC53111DD8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EFD1D05-5A06-4E7D-B917-EC53111DD8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EFD1D05-5A06-4E7D-B917-EC53111DD8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EFD1D05-5A06-4E7D-B917-EC53111DD8A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

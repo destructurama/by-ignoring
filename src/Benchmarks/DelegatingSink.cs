@@ -15,7 +15,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring.Tests;
+namespace Benchmarks;
 
 internal sealed class DelegatingSink : ILogEventSink
 {

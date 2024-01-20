@@ -16,7 +16,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring.Tests.TestCases;
+namespace Destructurama.ByIgnoring.Tests;
 
 public class ByIgnoreWhereTestCases
 {

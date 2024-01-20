@@ -12,22 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Serilog.Core;
-using Serilog.Events;
+namespace Benchmarks;
 
-namespace Destructurama.ByIgnoring.Tests;
-
-internal sealed class DelegatingSink : ILogEventSink
+internal class DestructureMe : IDestructureMe
 {
-    private readonly Action<LogEvent> _write;
-
-    public DelegatingSink(Action<LogEvent> write)
-    {
-        _write = write ?? throw new ArgumentNullException(nameof(write));
-    }
-
-    public void Emit(LogEvent logEvent)
-    {
-        _write(logEvent);
-    }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Password { get; set; }
+    public static string SomeStatic { get; set; } = "AAA";
+    public string this[int index] => "value";
 }

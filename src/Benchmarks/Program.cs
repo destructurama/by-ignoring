@@ -12,11 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Destructurama.ByIgnoring.Tests.TestCases;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Diagnosers;
+using BenchmarkDotNet.Running;
+using Benchmarks;
 
-public interface IDestructureMe
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? Password { get; set; }
-}
+new ByIgnoringBenchmarks().Setup();
+var config = ManualConfig
+  .Create(DefaultConfig.Instance)
+  .AddDiagnoser(MemoryDiagnoser.Default);
+
+BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, config);
