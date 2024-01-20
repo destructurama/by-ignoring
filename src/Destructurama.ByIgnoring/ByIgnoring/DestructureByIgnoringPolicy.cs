@@ -101,7 +101,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
     }
 
     private static LogEventPropertyValue BuildLogEventProperty(object propertyValue, ILogEventPropertyValueFactory propertyValueFactory)
-    {
-        return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
-    }
+        => propertyValue == null
+            ? ScalarValue.Null
+            : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
 }
