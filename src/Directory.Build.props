@@ -19,7 +19,7 @@
     <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">True</ContinuousIntegrationBuild>
     <PackageTags>serilog</PackageTags>
     <Nullable>enable</Nullable>
-    <PackageReadmeFile Condition="'$(IsPackable)' == 'true'">README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>true</SignAssembly>
