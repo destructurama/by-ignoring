@@ -13,10 +13,9 @@
 // limitations under the License.
 
 using System.Linq.Expressions;
-using Destructurama.ByIgnoring.Tests.Support;
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring.Tests.TestCases;
+namespace Destructurama.ByIgnoring.Tests;
 
 public record ByIgnoringTestCase<TDestructure>(string TestName)
 {

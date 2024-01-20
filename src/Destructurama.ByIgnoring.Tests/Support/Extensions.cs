@@ -14,7 +14,7 @@
 
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring.Tests.Support;
+namespace Destructurama.ByIgnoring.Tests;
 
 public static class Extensions
 {

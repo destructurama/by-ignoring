@@ -12,15 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Destructurama.ByIgnoring.Tests.Support;
-using Destructurama.ByIgnoring.Tests.TestCases;
 using FluentAssertions;
 using NUnit.Framework;
 using Serilog;
 using Serilog.Events;
 using Shouldly;
 
-namespace Destructurama.ByIgnoring.Tests.NewFolder;
+namespace Destructurama.ByIgnoring.Tests;
 
 [TestFixture]
 public class DestructureByIgnoringTests

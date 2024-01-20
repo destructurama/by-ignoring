@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Destructurama.ByIgnoring.Tests.Support;
+namespace Destructurama.ByIgnoring.Tests;
 
 public class DestructureMeThrows
 {
