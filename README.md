@@ -22,11 +22,15 @@
 
 Specify how complex types are logged to Serilog by excluding individual properties.
 
+# Installation
+
 Install from NuGet:
 
 ```powershell
 Install-Package Destructurama.ByIgnoring
 ```
+
+# Usage
 
 Mark properties to ignore on target types:
 
@@ -53,4 +57,8 @@ Log.Information("Logged on {@User}", new User { Username = "nick", Password = "T
 
 // Prints `Logged on User { Username: "nick"  }`
 ```
+
+# Benchmarks
+
+The results are available [here](https://destructurama.github.io/by-ignoring/dev/bench/).
 

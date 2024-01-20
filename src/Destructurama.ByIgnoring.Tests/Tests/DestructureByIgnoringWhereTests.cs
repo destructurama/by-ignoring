@@ -19,7 +19,7 @@ using NUnit.Framework;
 using Serilog;
 using Serilog.Events;
 
-namespace Destructurama.ByIgnoring.Tests;
+namespace Destructurama.ByIgnoring.Tests.NewFolder;
 
 [TestFixture]
 public class DestructureByIgnoringWhereTests
