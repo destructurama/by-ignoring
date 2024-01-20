@@ -13,8 +13,8 @@
 // limitations under the License.
 
 using System.Collections.Concurrent;
-using System.Linq.Expressions;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 using System.Reflection;
 using Serilog.Core;
 using Serilog.Debugging;
