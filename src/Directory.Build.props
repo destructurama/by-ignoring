@@ -25,7 +25,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../../assets/Destructurama.snk</AssemblyOriginatorKeyFile>
     <!--https://github.com/dotnet/BenchmarkDotNet/issues/836-->
-    <AssemblyOriginatorKeyFile Condition="EXISTS('./../../../../../assets/Destructurama.snk')">./../../../../../assets/Destructurama.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile Condition="EXISTS('../../../../../../assets/Destructurama.snk')">../../../../../../assets/Destructurama.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsPackable)' == 'true'">
