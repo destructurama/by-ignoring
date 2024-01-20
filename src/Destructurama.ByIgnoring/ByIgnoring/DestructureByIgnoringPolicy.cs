@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 using Serilog.Core;
@@ -37,7 +38,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
             throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "At least one ignore rule must be supplied");
     }
 
-    public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue? result)
+    public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, [NotNullWhen(true)] out LogEventPropertyValue? result)
     {
         if (value == null || !_handleDestructuringPredicate(value))
         {
@@ -100,7 +101,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
     }
 
     private static LogEventPropertyValue BuildLogEventProperty(object propertyValue, ILogEventPropertyValueFactory propertyValueFactory)
-    {
-        return propertyValue == null ? new ScalarValue(null) : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
-    }
+        => propertyValue == null
+            ? ScalarValue.Null
+            : propertyValueFactory.CreatePropertyValue(propertyValue, destructureObjects: true);
 }
