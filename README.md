@@ -20,7 +20,7 @@
 [![Publish release to Nuget registry](https://github.com/destructurama/by-ignoring/actions/workflows/publish-release.yml/badge.svg)](https://github.com/destructurama/by-ignoring/actions/workflows/publish-release.yml)
 [![CodeQL analysis](https://github.com/destructurama/by-ignoring/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/destructurama/by-ignoring/actions/workflows/codeql-analysis.yml)
 
-Specify how complex types are logged to Serilog by excluding individual properties.
+Specify how complex types are logged to [Serilog](https://serilog.net) by excluding individual properties.
 
 # Installation
 
