@@ -61,4 +61,3 @@ Log.Information("Logged on {@User}", new User { Username = "nick", Password = "T
 # Benchmarks
 
 The results are available [here](https://destructurama.github.io/by-ignoring/dev/bench/).
-
