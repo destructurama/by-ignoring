@@ -82,4 +82,11 @@ public class DestructureByIgnoringTests
         sv.Properties[0].Name.ShouldBe("BadProperty");
         sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("The property accessor threw an exception: FormatException");
     }
+
+    [Test]
+    public void TryDestructure_Should_Return_False_When_Called_With_Null()
+    {
+        var policy = new DestructureByIgnoringPolicy(_ => true, _ => true);
+        policy.TryDestructure(null!, null!, out _).ShouldBeFalse();
+    }
 }

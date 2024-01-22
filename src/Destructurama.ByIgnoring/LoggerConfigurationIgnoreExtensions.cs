@@ -69,7 +69,7 @@ public static class LoggerConfigurationIgnoreExtensions
     /// <summary>
     /// Takes one or more predicates that when <see langword="true"/> indicates a given property is to
     /// be ignored when destructured by Serilog. This ignoring only comes into play for an object where
-    /// <paramref name="handleDestructuringPredicate"/> returns true.
+    /// <paramref name="handleDestructuringPredicate"/> returns <see langword="true"/>.
     /// </summary>
     /// <param name="configuration">The logger configuration to apply configuration to.</param>
     /// <param name="handleDestructuringPredicate">Given an object to destructure, should this policy take effect?</param>
