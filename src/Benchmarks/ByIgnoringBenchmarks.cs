@@ -14,9 +14,9 @@
 
 using BenchmarkDotNet.Attributes;
 using Destructurama;
+using Destructurama.ByIgnoring;
 using Serilog;
 using Serilog.Core;
-using Serilog.Events;
 
 namespace Benchmarks;
 
@@ -29,34 +29,44 @@ public class ByIgnoringBenchmarks
         Password = "12345",
     };
 
-    private Logger _log1 = null!;
-    private Logger _log2 = null!;
+    private ILogEventPropertyValueFactory _factory1 = null!;
+    private ILogEventPropertyValueFactory _factory2 = null!;
+    private IDestructuringPolicy _policy1 = null!;
+    private IDestructuringPolicy _policy2 = null!;
 
     [GlobalSetup]
     public void Setup()
     {
-        LogEvent evt = null!;
-
-        _log1 = new LoggerConfiguration()
+        var log1 = new LoggerConfiguration()
             .Destructure.ByIgnoringProperties<DestructureMe>(o => o.Id)
-            .WriteTo.Sink(new DelegatingSink(e => evt = e))
             .CreateLogger();
 
-        _log2 = new LoggerConfiguration()
+        var processor1 = log1.GetType().GetField("_messageTemplateProcessor", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(log1)!;
+        var converter1 = processor1.GetType().GetField("_propertyValueConverter", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(processor1)!;
+        _factory1 = (ILogEventPropertyValueFactory)converter1;
+        var policies1 = (IDestructuringPolicy[])converter1.GetType().GetField("_destructuringPolicies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(converter1)!;
+        _policy1 = policies1.First(p => p is DestructureByIgnoringPolicy);
+
+        var log2 = new LoggerConfiguration()
             .Destructure.ByIgnoringPropertiesOfTypeAssignableTo<IDestructureMe>(o => o.Id)
-            .WriteTo.Sink(new DelegatingSink(e => evt = e))
             .CreateLogger();
+
+        var processor2 = log2.GetType().GetField("_messageTemplateProcessor", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(log2)!;
+        var converter2 = processor2.GetType().GetField("_propertyValueConverter", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(processor2)!;
+        _factory2 = (ILogEventPropertyValueFactory)converter2;
+        var policies2 = (IDestructuringPolicy[])converter2.GetType().GetField("_destructuringPolicies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(converter2)!;
+        _policy2 = policies2.First(p => p is DestructureByIgnoringPolicy);
     }
 
     [Benchmark]
-    public void Log1()
+    public void Destructure()
     {
-        _log1.Information("Here is {@Logged}", _obj);
+        _policy1.TryDestructure(_obj, _factory1, out _);
     }
 
     [Benchmark]
-    public void Log2()
+    public void DestructureAssignable()
     {
-        _log2.Information("Here is {@Logged}", _obj);
+        _policy2.TryDestructure(_obj, _factory2, out _);
     }
 }
