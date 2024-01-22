@@ -26,5 +26,7 @@ internal class DestructureMe : IDestructureMe
 
     public static string SomeStaticSetter { set { } }
 
+    public string SomeInstanceSetter { set { } }
+
     public string this[int index] => "value";
 }
