@@ -17,8 +17,14 @@ namespace Benchmarks;
 internal class DestructureMe : IDestructureMe
 {
     public int Id { get; set; }
+
     public string? Name { get; set; }
+
     public string? Password { get; set; }
+
     public static string SomeStatic { get; set; } = "AAA";
+
+    public static string SomeStaticSetter { set { } }
+
     public string this[int index] => "value";
 }
