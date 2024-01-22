@@ -21,8 +21,10 @@ namespace Destructurama.ByIgnoring;
 /// </summary>
 internal static class IgnoredPropertyExpressionExtensions
 {
-    private const string EXPRESSION_NOT_SUPPORTED = "A property name cannot be retrieved from function expression with body of type {0}. " +
-                                                  "Only function expressions that access a property are currently supported. e.g. obj => obj.Property";
+    private const string EXPRESSION_NOT_SUPPORTED = """
+        A property name cannot be retrieved from function expression with body of type {0}.
+        Only function expressions that access a property are currently supported. e.g. obj => obj.Property
+        """;
 
     /// <summary>
     /// Obtains the name of a property of the provided <typeparamref name="TDestructureType"/> using an expression.
