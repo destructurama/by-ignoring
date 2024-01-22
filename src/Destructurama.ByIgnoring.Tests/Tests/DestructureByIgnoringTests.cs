@@ -15,7 +15,6 @@
 using FluentAssertions;
 using NUnit.Framework;
 using Serilog;
-using Serilog.Core;
 using Serilog.Events;
 using Shouldly;
 
