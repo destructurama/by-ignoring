@@ -58,7 +58,7 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
     {
         var eligibleRuntimeProperties = type.GetRuntimeProperties()
             .Where(p => p.CanRead)
-            .Where(p => p.GetMethod?.IsStatic != true)
+            .Where(p => !p.GetMethod.IsStatic)
             .Where(p => p.GetIndexParameters().Length == 0);
 
         return eligibleRuntimeProperties
