@@ -53,6 +53,25 @@ public class ByIgnoringTestCases
             },
         };
 
+        yield return new ByIgnoringTestCase<DestructureMe>("Ignore id and password should only include name even if it is null")
+        {
+            IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
+           {
+                dm => dm.Id, // value type property
+                dm => dm.Password, // reference type property
+           },
+            ObjectToDestructure = new DestructureMe
+            {
+                Id = 2,
+                Name = null,
+                Password = "Password",
+            },
+            ExpectedPropertiesLogged = new Dictionary<string, LogEventPropertyValue>
+            {
+                { "Name", ScalarValue.Null },
+            },
+        };
+
         yield return new ByIgnoringTestCase<DestructureMe>("Ignore just id should include two others")
         {
             IgnoredProperties = new Expression<Func<DestructureMe, object?>>[]
