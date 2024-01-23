@@ -25,11 +25,11 @@ public class ByIgnoreWhereTestCases
         yield return new ByIgnoreWhereTestCase("given matching handle predicate, then ignore properties according to supplied predicates")
         {
             HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),
-            IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
-            {
+            IgnoredPropertyPredicates =
+            [
                 pi => pi.Name == nameof(DestructureMe.Id), // value type property
                 pi => pi.Name == nameof(DestructureMe.Password), // reference type property
-            },
+            ],
             ObjectToDestructure = new DestructureMe
             {
                 Id = 2,
@@ -45,11 +45,11 @@ public class ByIgnoreWhereTestCases
         yield return new ByIgnoreWhereTestCase("given a non-matching handle predicate, then log entire object")
         {
             HandleDestructuringPredicate = obj => obj.GetType() == typeof(DestructureMe),
-            IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
-            {
+            IgnoredPropertyPredicates =
+            [
                 pi => pi.Name == nameof(DestructureMe.Id), // value type property
                 pi => pi.Name == nameof(DestructureMe.Password), // reference type property
-            },
+            ],
             ObjectToDestructure = new
             {
                 Id = 2,
@@ -80,11 +80,11 @@ public class ByIgnoreWhereTestCases
         yield return new ByIgnoreWhereExceptionTestCase("null handleDestructuringPredicate")
         {
             HandleDestructuringPredicate = null!,
-            IgnoredPropertyPredicates = new Func<PropertyInfo, bool>[]
-            {
+            IgnoredPropertyPredicates =
+            [
                 pi => pi.Name == nameof(DestructureMe.Id),
                 pi => pi.Name == nameof(DestructureMe.Password),
-            },
+            ],
             ExceptionType = typeof(ArgumentNullException),
         };
 
