@@ -89,4 +89,37 @@ public class DestructureByIgnoringTests
         var policy = new DestructureByIgnoringPolicy(_ => true, _ => true);
         policy.TryDestructure(null!, null!, out _).ShouldBeFalse();
     }
+
+    [Test]
+    public void TryDestructure_Should_Work_For_Structs()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoringProperties<DestructureMeStruct>(o => o.Id)
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeStruct();
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Name");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("Tom");
+    }
+
+    public struct DestructureMeStruct
+    {
+        public DestructureMeStruct()
+        {
+        }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; } = "Tom";
+    }
 }
