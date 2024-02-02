@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706634851925,
+  "lastUpdate": 1706891934835,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -576,6 +576,42 @@ window.BENCHMARK_DATA = {
             "value": 134.36157185297745,
             "unit": "ns",
             "range": "± 0.37603274273484555"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "60e14898c35dbbde40fe959e8ed975f9a02931a2",
+          "message": "Bump codecov/codecov-action from 3 to 4 (#48)",
+          "timestamp": "2024-02-02T19:37:46+03:00",
+          "tree_id": "c34d3e9bee924a18af190e300d0b21c540c54ca7",
+          "url": "https://github.com/destructurama/by-ignoring/commit/60e14898c35dbbde40fe959e8ed975f9a02931a2"
+        },
+        "date": 1706891933844,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 143.10303040913172,
+            "unit": "ns",
+            "range": "± 0.807037410642635"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 133.41533320744833,
+            "unit": "ns",
+            "range": "± 0.9056425582804877"
           }
         ]
       }
