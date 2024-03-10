@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708548864349,
+  "lastUpdate": 1710090949136,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -648,6 +648,42 @@ window.BENCHMARK_DATA = {
             "value": 135.56816511154176,
             "unit": "ns",
             "range": "± 1.2199628016157287"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5de6d33c31c72e24238aefe051087fb89bcf12eb",
+          "message": "Bump MinVer from 4.3.0 to 5.0.0 (#50)\n\nBumps [MinVer](https://github.com/adamralph/minver) from 4.3.0 to 5.0.0.\r\n- [Changelog](https://github.com/adamralph/minver/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/adamralph/minver/compare/4.3.0...5.0.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: MinVer\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-major\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-03-10T20:14:27+03:00",
+          "tree_id": "e507319230f840093393e3ae078f5e6c6f6ff7a8",
+          "url": "https://github.com/destructurama/by-ignoring/commit/5de6d33c31c72e24238aefe051087fb89bcf12eb"
+        },
+        "date": 1710090948187,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 158.06249618530273,
+            "unit": "ns",
+            "range": "± 0.8140819886880882"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 131.4956337451935,
+            "unit": "ns",
+            "range": "± 1.0489516543321271"
           }
         ]
       }
