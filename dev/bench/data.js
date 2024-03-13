@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1710310503175,
+  "lastUpdate": 1710355095534,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -720,6 +720,42 @@ window.BENCHMARK_DATA = {
             "value": 135.8820775349935,
             "unit": "ns",
             "range": "± 1.144758902379016"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e359ed9a02447992aec2a799bb40ae2f1665d5fc",
+          "message": "Bump coverlet.msbuild from 6.0.1 to 6.0.2 (#51)\n\nBumps [coverlet.msbuild](https://github.com/coverlet-coverage/coverlet) from 6.0.1 to 6.0.2.\r\n- [Release notes](https://github.com/coverlet-coverage/coverlet/releases)\r\n- [Commits](https://github.com/coverlet-coverage/coverlet/compare/v6.0.1...v6.0.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: coverlet.msbuild\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-03-13T21:37:04+03:00",
+          "tree_id": "6c1811e72cd5ddbb820e36fb01df55f6d455b000",
+          "url": "https://github.com/destructurama/by-ignoring/commit/e359ed9a02447992aec2a799bb40ae2f1665d5fc"
+        },
+        "date": 1710355095161,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 131.92641566349909,
+            "unit": "ns",
+            "range": "± 0.35036334603266306"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 133.15887366022383,
+            "unit": "ns",
+            "range": "± 1.0492105929754194"
           }
         ]
       }
