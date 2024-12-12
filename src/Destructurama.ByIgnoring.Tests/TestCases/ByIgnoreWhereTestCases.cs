@@ -101,13 +101,6 @@ public class ByIgnoreWhereTestCases
             IgnoredPropertyPredicates = null!,
             ExceptionType = typeof(ArgumentNullException),
         };
-
-        yield return new ByIgnoreWhereExceptionTestCase("empty ignoredPropertyPredicates")
-        {
-            HandleDestructuringPredicate = obj => obj is IDestructureMe,
-            IgnoredPropertyPredicates = Array.Empty<Func<PropertyInfo, bool>>(),
-            ExceptionType = typeof(ArgumentOutOfRangeException),
-        };
     }
 
     private static IEnumerable<ByIgnoreWhereTestCase> Convert<T>(IEnumerable<ByIgnoringTestCase<T>> input)

@@ -26,16 +26,19 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
 {
     private readonly Func<object, bool> _handleDestructuringPredicate;
     private readonly Func<PropertyInfo, bool>[] _ignoredPropertyPredicates;
+    private readonly Func<PropertyInfo, object, bool> _ignoreValuePredicate;
 
     private readonly ConcurrentDictionary<Type, (PropertyInfo Property, Func<object, object> Accessor)[]> _cache = new();
 
-    public DestructureByIgnoringPolicy(Func<object, bool> handleDestructuringPredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates)
+    public DestructureByIgnoringPolicy(Func<object, bool> handleDestructuringPredicate, Func<PropertyInfo, object, bool> ignoreValuePredicate, params Func<PropertyInfo, bool>[] ignoredPropertyPredicates)
     {
         _handleDestructuringPredicate = handleDestructuringPredicate ?? throw new ArgumentNullException(nameof(handleDestructuringPredicate));
+        _ignoreValuePredicate = ignoreValuePredicate;
         _ignoredPropertyPredicates = ignoredPropertyPredicates ?? throw new ArgumentNullException(nameof(ignoredPropertyPredicates));
 
-        if (ignoredPropertyPredicates.Length == 0)
-            throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "At least one ignore rule must be supplied");
+        // After introducing ignoreValuePredicate caller now may not specify any value for ignoredPropertyPredicates.
+        // if (ignoredPropertyPredicates.Length == 0)
+        //     throw new ArgumentOutOfRangeException(nameof(ignoredPropertyPredicates), "At least one ignore rule must be supplied");
     }
 
     public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, [NotNullWhen(true)] out LogEventPropertyValue? result)
@@ -76,15 +79,17 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
         }
     }
 
-    private static StructureValue BuildStructure(object value, ILogEventPropertyValueFactory propertyValueFactory, (PropertyInfo Property, Func<object, object> Accessor)[] propertiesToInclude, Type destructureType)
+    private StructureValue BuildStructure(object value, ILogEventPropertyValueFactory propertyValueFactory, (PropertyInfo Property, Func<object, object> Accessor)[] propertiesToInclude, Type destructureType)
     {
         var structureProperties = new List<LogEventProperty>();
         foreach (var (propertyInfo, accessor) in propertiesToInclude)
         {
             object propertyValue;
+            bool ignoreValue = false;
             try
             {
                 propertyValue = accessor(value);
+                ignoreValue = _ignoreValuePredicate(propertyInfo, propertyValue);
             }
             catch (Exception ex)
             {
@@ -92,9 +97,12 @@ internal sealed class DestructureByIgnoringPolicy : IDestructuringPolicy
                 propertyValue = "The property accessor threw an exception: " + ex.GetType().Name;
             }
 
-            var logEventPropertyValue = BuildLogEventProperty(propertyValue, propertyValueFactory);
+            if (!ignoreValue)
+            {
+                var logEventPropertyValue = BuildLogEventProperty(propertyValue, propertyValueFactory);
 
-            structureProperties.Add(new LogEventProperty(propertyInfo.Name, logEventPropertyValue));
+                structureProperties.Add(new LogEventProperty(propertyInfo.Name, logEventPropertyValue));
+            }
         }
 
         return new StructureValue(structureProperties, destructureType.Name);

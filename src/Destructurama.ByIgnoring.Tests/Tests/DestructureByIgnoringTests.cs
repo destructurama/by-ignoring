@@ -86,7 +86,7 @@ public class DestructureByIgnoringTests
     [Test]
     public void TryDestructure_Should_Return_False_When_Called_With_Null()
     {
-        var policy = new DestructureByIgnoringPolicy(_ => true, _ => true);
+        var policy = new DestructureByIgnoringPolicy(_ => true, (_, _) => false, _ => true);
         policy.TryDestructure(null!, null!, out _).ShouldBeFalse();
     }
 
@@ -112,6 +112,50 @@ public class DestructureByIgnoringTests
         sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("Tom");
     }
 
+    [Test]
+    public void TryDestructure_Should_Ignore_Null_String()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<DestructureMeStruct>(o => o.IgnoreValue((_, v) => v is null))
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeStruct { Name = null };
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Id");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe(0);
+    }
+
+    [Test]
+    public void TryDestructure_Should_Ignore_Custom_Value()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<DestructureMeStruct>(o => o.IgnoreValue((p, v) => p.Name is "Id" && v is 42))
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeStruct { Id = 42 };
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Name");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("Tom");
+    }
+
     public struct DestructureMeStruct
     {
         public DestructureMeStruct()
@@ -120,6 +164,6 @@ public class DestructureByIgnoringTests
 
         public int Id { get; set; }
 
-        public string Name { get; set; } = "Tom";
+        public string? Name { get; set; } = "Tom";
     }
 }
