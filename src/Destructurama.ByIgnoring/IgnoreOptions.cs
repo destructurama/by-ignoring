@@ -45,7 +45,7 @@ public sealed class IgnoreOptions<TDestructure>
     /// <returns>Reference to itself.</returns>
     public IgnoreOptions<TDestructure> DestructureExactType()
     {
-        HandleDestructuringPredicate = obj => obj is TDestructure;
+        HandleDestructuringPredicate = obj => obj.GetType() == typeof(TDestructure);
         return this;
     }
 
