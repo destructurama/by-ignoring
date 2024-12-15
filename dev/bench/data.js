@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1734272186108,
+  "lastUpdate": 1734273631196,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -936,6 +936,42 @@ window.BENCHMARK_DATA = {
             "value": 150.26003330094474,
             "unit": "ns",
             "range": "± 1.2427112900863326"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "38810c08a5f8dd2ef592e431e693d1a4b3ccec7e",
+          "message": "Introduce IgnoreOptions and allow to ignore specific values (#54)",
+          "timestamp": "2024-12-15T17:39:20+03:00",
+          "tree_id": "267892d8306a24368a5f7dfb9f7b9c3aa47f8758",
+          "url": "https://github.com/destructurama/by-ignoring/commit/38810c08a5f8dd2ef592e431e693d1a4b3ccec7e"
+        },
+        "date": 1734273630903,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 134.28065202917372,
+            "unit": "ns",
+            "range": "± 0.6580342278507526"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 141.25293123722076,
+            "unit": "ns",
+            "range": "± 0.7484898435977095"
           }
         ]
       }
