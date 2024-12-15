@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1734017943362,
+  "lastUpdate": 1734271753816,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -792,6 +792,42 @@ window.BENCHMARK_DATA = {
             "value": 145.3022656440735,
             "unit": "ns",
             "range": "± 0.5696662904033732"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "distinct": true,
+          "id": "01591b5ae3f560c11b76a9aaec424670b8077ac0",
+          "message": "Change directory",
+          "timestamp": "2024-12-15T17:08:04+03:00",
+          "tree_id": "2af8c6c7a861bac5967a77d1432caefe742c3746",
+          "url": "https://github.com/destructurama/by-ignoring/commit/01591b5ae3f560c11b76a9aaec424670b8077ac0"
+        },
+        "date": 1734271753471,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 146.99993209838868,
+            "unit": "ns",
+            "range": "± 0.6166787281970678"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 149.9595263004303,
+            "unit": "ns",
+            "range": "± 0.6511976062568318"
           }
         ]
       }
