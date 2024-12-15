@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1734272120962,
+  "lastUpdate": 1734272186108,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -900,6 +900,42 @@ window.BENCHMARK_DATA = {
             "value": 143.2533574615206,
             "unit": "ns",
             "range": "± 1.3031155341248768"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bb8f28a215f232abe112fd6870ebc906267208ec",
+          "message": "Bump PolySharp from 1.14.1 to 1.15.0 in /src (#56)\n\nBumps [PolySharp](https://github.com/Sergio0694/PolySharp) from 1.14.1 to 1.15.0.\r\n- [Release notes](https://github.com/Sergio0694/PolySharp/releases)\r\n- [Commits](https://github.com/Sergio0694/PolySharp/compare/1.14.1...1.15.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: PolySharp\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-minor\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-12-15T17:14:34+03:00",
+          "tree_id": "67ea841d16198781e2f84fcf2bc136373f2d7cc5",
+          "url": "https://github.com/destructurama/by-ignoring/commit/bb8f28a215f232abe112fd6870ebc906267208ec"
+        },
+        "date": 1734272185133,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 132.852117729187,
+            "unit": "ns",
+            "range": "± 1.5816891106419855"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 150.26003330094474,
+            "unit": "ns",
+            "range": "± 1.2427112900863326"
           }
         ]
       }
