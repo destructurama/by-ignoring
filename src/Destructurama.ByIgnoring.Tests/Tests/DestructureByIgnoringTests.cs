@@ -86,7 +86,7 @@ public class DestructureByIgnoringTests
     [Test]
     public void TryDestructure_Should_Return_False_When_Called_With_Null()
     {
-        var policy = new DestructureByIgnoringPolicy(_ => true, _ => true);
+        var policy = new DestructureByIgnoringPolicy(_ => true, (_, _) => false, _ => true);
         policy.TryDestructure(null!, null!, out _).ShouldBeFalse();
     }
 
@@ -112,7 +112,130 @@ public class DestructureByIgnoringTests
         sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("Tom");
     }
 
-    public struct DestructureMeStruct
+    [Test]
+    public void TryDestructure_Should_Ignore_Property_From_Options()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<DestructureMeClass>(o => o.Ignore(x => x.Id))
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeClass { Id = 42 };
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Name");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("Tom");
+    }
+
+    [Test]
+    public void TryDestructure_Should_Ignore_Null_String()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<DestructureMeClass>(o => o.IgnoreValue((_, v) => v is null))
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeClass { Name = null };
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Id");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe(0);
+    }
+
+    [Test]
+    public void TryDestructure_Should_Ignore_Custom_Value()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<DestructureMeClass>(o => o.IgnoreValue((p, v) => p.Name is "Id" && v is 42))
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj = new DestructureMeClass { Id = 42 };
+
+        // Execute
+        log.Information("Here is {@Ignored}", obj);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Name");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe("Tom");
+    }
+
+    [Test]
+    public void TryDestructure_Should_Ignore_All_AssignableTo()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<IDestructureMe>(o => o.IgnoreValue((_, v) => v is null).DestructureAssignableTo())
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj1 = new DestructureMeStruct { Name = null };
+        var obj2 = new DestructureMeClass { Name = null };
+
+        // Execute
+        log.Information("Here is {@Ignored1} and {@Ignored2}", obj1, obj2);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored1"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Id");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe(0);
+        sv = (StructureValue)evt.Properties["Ignored2"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Id");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe(0);
+    }
+
+    [Test]
+    public void TryDestructure_Should_Ignore_Exact_Type()
+    {
+        // Setup
+        LogEvent evt = null!;
+
+        var log = new LoggerConfiguration()
+            .Destructure.ByIgnoring<DestructureMeClass>(o => o.IgnoreValue((_, v) => v is null).DestructureExactType())
+            .WriteTo.Sink(new DelegatingSink(e => evt = e))
+            .CreateLogger();
+        var obj1 = new DestructureMeStruct { Name = null };
+        var obj2 = new DestructureMeClass { Name = null };
+
+        // Execute
+        log.Information("Here is {@Ignored1} and {@Ignored2}", obj1, obj2);
+
+        // Verify
+        var sv = (StructureValue)evt.Properties["Ignored1"];
+        sv.Properties.Count.ShouldBe(2);
+        sv.Properties[0].Name.ShouldBe("Id");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe(0);
+        sv.Properties[1].Name.ShouldBe("Name");
+        sv.Properties[1].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBeNull();
+
+        sv = (StructureValue)evt.Properties["Ignored2"];
+        sv.Properties.Count.ShouldBe(1);
+        sv.Properties[0].Name.ShouldBe("Id");
+        sv.Properties[0].Value.ShouldBeOfType<ScalarValue>().Value.ShouldBe(0);
+    }
+
+    public struct DestructureMeStruct : IDestructureMe
     {
         public DestructureMeStruct()
         {
@@ -120,6 +243,17 @@ public class DestructureByIgnoringTests
 
         public int Id { get; set; }
 
-        public string Name { get; set; } = "Tom";
+        public string? Name { get; set; } = "Tom";
+    }
+
+    public interface IDestructureMe
+    {
+    }
+
+    public class DestructureMeClass : IDestructureMe
+    {
+        public int Id { get; set; }
+
+        public string? Name { get; set; } = "Tom";
     }
 }

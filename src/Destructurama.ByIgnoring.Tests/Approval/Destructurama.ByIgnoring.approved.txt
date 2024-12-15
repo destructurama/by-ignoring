@@ -1,10 +1,20 @@
 namespace Destructurama
 {
+    public sealed class IgnoreOptions<TDestructure>
+    {
+        public IgnoreOptions() { }
+        public Destructurama.IgnoreOptions<TDestructure> DestructureAssignableTo() { }
+        public Destructurama.IgnoreOptions<TDestructure> DestructureExactType() { }
+        public Destructurama.IgnoreOptions<TDestructure> Ignore(System.Linq.Expressions.Expression<System.Func<TDestructure, object?>> ignoredProperty) { }
+        public Destructurama.IgnoreOptions<TDestructure> IgnoreValue(System.Func<System.Reflection.PropertyInfo, object, bool> ignoreValuePredicate) { }
+    }
     public static class LoggerConfigurationIgnoreExtensions
     {
+        public static Serilog.LoggerConfiguration ByIgnoring<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, Destructurama.IgnoreOptions<TDestructure> options) { }
+        public static Serilog.LoggerConfiguration ByIgnoring<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, System.Action<Destructurama.IgnoreOptions<TDestructure>> configure) { }
         public static Serilog.LoggerConfiguration ByIgnoringProperties<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, params System.Linq.Expressions.Expression<System.Func<TDestructure, object?>>[] ignoredProperties) { }
         public static Serilog.LoggerConfiguration ByIgnoringPropertiesOfTypeAssignableTo<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, params System.Linq.Expressions.Expression<System.Func<TDestructure, object?>>[] ignoredProperties) { }
         public static Serilog.LoggerConfiguration ByIgnoringPropertiesWhere(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, System.Func<object, bool> handleDestructuringPredicate, params System.Func<System.Reflection.PropertyInfo, bool>[] ignoredPropertyPredicates) { }
-        public static Serilog.LoggerConfiguration ByIgnoringPropertiesWhere<TDestruture>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, System.Func<object, bool> handleDestructuringPredicate, params System.Linq.Expressions.Expression<System.Func<TDestruture, object?>>[] ignoredProperties) { }
+        public static Serilog.LoggerConfiguration ByIgnoringPropertiesWhere<TDestructure>(this Serilog.Configuration.LoggerDestructuringConfiguration configuration, System.Func<object, bool> handleDestructuringPredicate, params System.Linq.Expressions.Expression<System.Func<TDestructure, object?>>[] ignoredProperties) { }
     }
 }
