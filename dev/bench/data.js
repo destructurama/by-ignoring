@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1734273631196,
+  "lastUpdate": 1734274538741,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -972,6 +972,42 @@ window.BENCHMARK_DATA = {
             "value": 141.25293123722076,
             "unit": "ns",
             "range": "± 0.7484898435977095"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b29ae505ba081367c94de4559444fa944fa416f7",
+          "message": "Migrate to .NET9 SDK (#59)",
+          "timestamp": "2024-12-15T17:54:22+03:00",
+          "tree_id": "013769896c752ebfcfe7a0f18f6a5cbe9acb73c2",
+          "url": "https://github.com/destructurama/by-ignoring/commit/b29ae505ba081367c94de4559444fa944fa416f7"
+        },
+        "date": 1734274537845,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 133.30335642610277,
+            "unit": "ns",
+            "range": "± 1.35242771876705"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 135.20050127165658,
+            "unit": "ns",
+            "range": "± 0.7118578002936182"
           }
         ]
       }
