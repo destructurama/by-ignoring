@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1734274538741,
+  "lastUpdate": 1734274917874,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1008,6 +1008,42 @@ window.BENCHMARK_DATA = {
             "value": 135.20050127165658,
             "unit": "ns",
             "range": "± 0.7118578002936182"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "897785979fdcae3d50b5dc979978378c1d12ca7a",
+          "message": "Bump Serilog from 3.1.1 to 4.2.0 (#60)",
+          "timestamp": "2024-12-15T18:00:39+03:00",
+          "tree_id": "0d2995ec925d12b27361ad0e69b26aedffa7cdcf",
+          "url": "https://github.com/destructurama/by-ignoring/commit/897785979fdcae3d50b5dc979978378c1d12ca7a"
+        },
+        "date": 1734274916880,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 138.82322278389563,
+            "unit": "ns",
+            "range": "± 0.42188571386175067"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 148.01895066897075,
+            "unit": "ns",
+            "range": "± 0.9204989503412205"
           }
         ]
       }
