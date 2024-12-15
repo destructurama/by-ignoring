@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1734271753816,
+  "lastUpdate": 1734272092829,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -828,6 +828,42 @@ window.BENCHMARK_DATA = {
             "value": 149.9595263004303,
             "unit": "ns",
             "range": "± 0.6511976062568318"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bd30f2b5d4e15b91201604a4e40f617e4797b3f9",
+          "message": "Bump MinVer from 5.0.0 to 6.0.0 in /src (#58)\n\nBumps [MinVer](https://github.com/adamralph/minver) from 5.0.0 to 6.0.0.\r\n- [Changelog](https://github.com/adamralph/minver/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/adamralph/minver/compare/5.0.0...6.0.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: MinVer\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-major\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2024-12-15T17:13:48+03:00",
+          "tree_id": "4deb0d64c2130c6abe8ce5c33f383a3f26c6c925",
+          "url": "https://github.com/destructurama/by-ignoring/commit/bd30f2b5d4e15b91201604a4e40f617e4797b3f9"
+        },
+        "date": 1734272092504,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 137.65120579515184,
+            "unit": "ns",
+            "range": "± 0.8619471975036731"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 140.9068779627482,
+            "unit": "ns",
+            "range": "± 1.076908101334811"
           }
         ]
       }
