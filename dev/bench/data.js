@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760032284143,
+  "lastUpdate": 1760032378337,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1260,6 +1260,42 @@ window.BENCHMARK_DATA = {
             "value": 136.10669417381285,
             "unit": "ns",
             "range": "± 1.1217832154281853"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "147919fa098e8beacf6a2270e8edff7df2046dc9",
+          "message": "Bump actions/stale from 9 to 10 (#66)\n\nBumps [actions/stale](https://github.com/actions/stale) from 9 to 10.\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/v9...v10)\n\n---\nupdated-dependencies:\n- dependency-name: actions/stale\n  dependency-version: '10'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2025-10-09T20:51:46+03:00",
+          "tree_id": "099b52de4e6a88887e292c9f781de85ba2736487",
+          "url": "https://github.com/destructurama/by-ignoring/commit/147919fa098e8beacf6a2270e8edff7df2046dc9"
+        },
+        "date": 1760032377276,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 131.72799983391394,
+            "unit": "ns",
+            "range": "± 0.7349959920591344"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 128.2553872511937,
+            "unit": "ns",
+            "range": "± 0.8131075813349969"
           }
         ]
       }
