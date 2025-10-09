@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760032378337,
+  "lastUpdate": 1760032557354,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1296,6 +1296,42 @@ window.BENCHMARK_DATA = {
             "value": 128.2553872511937,
             "unit": "ns",
             "range": "± 0.8131075813349969"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1c25935bab65374fd33640767ce01e0f1d7fae77",
+          "message": "Bump actions/labeler from 5 to 6 (#67)\n\nBumps [actions/labeler](https://github.com/actions/labeler) from 5 to 6.\n- [Release notes](https://github.com/actions/labeler/releases)\n- [Commits](https://github.com/actions/labeler/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: actions/labeler\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2025-10-09T20:54:36+03:00",
+          "tree_id": "50056b0b68e154443a0b890a203967413d53e316",
+          "url": "https://github.com/destructurama/by-ignoring/commit/1c25935bab65374fd33640767ce01e0f1d7fae77"
+        },
+        "date": 1760032556670,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 136.81434203897203,
+            "unit": "ns",
+            "range": "± 1.1626019919482662"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 132.22892697652182,
+            "unit": "ns",
+            "range": "± 1.406996536450276"
           }
         ]
       }
