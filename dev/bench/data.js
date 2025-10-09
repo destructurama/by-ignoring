@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1760031908538,
+  "lastUpdate": 1760032144601,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1188,6 +1188,42 @@ window.BENCHMARK_DATA = {
             "value": 135.5863221804301,
             "unit": "ns",
             "range": "± 1.3840045502697436"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e05244dd30ed2e42adaa496bf45ee11e081564df",
+          "message": "Bump actions/setup-dotnet from 4 to 5 (#64)\n\nBumps [actions/setup-dotnet](https://github.com/actions/setup-dotnet) from 4 to 5.\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/v4...v5)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2025-10-09T20:47:46+03:00",
+          "tree_id": "6b34de165cc935e5c5caf327f364ac0393dad311",
+          "url": "https://github.com/destructurama/by-ignoring/commit/e05244dd30ed2e42adaa496bf45ee11e081564df"
+        },
+        "date": 1760032143886,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 128.0774717926979,
+            "unit": "ns",
+            "range": "± 3.300349491105079"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 130.15805827654324,
+            "unit": "ns",
+            "range": "± 1.0787599693273655"
           }
         ]
       }
