@@ -30,7 +30,7 @@ public record ByIgnoreExceptionTestCase<TDestructure>(string TestName)
     public Type? ExceptionType { get; set; }
 }
 
-public class ByIgnoringTestCases
+public static class ByIgnoringTestCases
 {
     public static IEnumerable<ByIgnoringTestCase<DestructureMe>> DestructureMeSuccessTestCases()
     {
