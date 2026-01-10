@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768065706579,
+  "lastUpdate": 1768065932933,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1836,6 +1836,42 @@ window.BENCHMARK_DATA = {
             "value": 137.76700722376506,
             "unit": "ns",
             "range": "± 1.608021622474157"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "97304f50e26f0fec25874426af70364c7ca37ddd",
+          "message": "Migrate to globalconfig + DotNetProjectFile.Analyzers (#79)",
+          "timestamp": "2026-01-10T20:23:59+03:00",
+          "tree_id": "8941b4962e51209dd5c17b2e8cb1310f863a5246",
+          "url": "https://github.com/destructurama/by-ignoring/commit/97304f50e26f0fec25874426af70364c7ca37ddd"
+        },
+        "date": 1768065932102,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 99.22279727458954,
+            "unit": "ns",
+            "range": "± 0.42128510014973614"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 99.24563887914022,
+            "unit": "ns",
+            "range": "± 0.5363772611420196"
           }
         ]
       }
