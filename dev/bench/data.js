@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765829663102,
+  "lastUpdate": 1768062362678,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1512,6 +1512,42 @@ window.BENCHMARK_DATA = {
             "value": 106.94434213638306,
             "unit": "ns",
             "range": "± 0.6707334855086365"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "82bd8dfaa619d9796bc95568a6449baaa01ea3fe",
+          "message": "Move PublicKey into property (#73)",
+          "timestamp": "2026-01-10T19:24:28+03:00",
+          "tree_id": "20ca8882f694fabec8fc79d1272f849d5c3c8b14",
+          "url": "https://github.com/destructurama/by-ignoring/commit/82bd8dfaa619d9796bc95568a6449baaa01ea3fe"
+        },
+        "date": 1768062362226,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 102.62246851737683,
+            "unit": "ns",
+            "range": "± 0.6599028850920736"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 106.75170351266861,
+            "unit": "ns",
+            "range": "± 1.7356246692882282"
           }
         ]
       }
