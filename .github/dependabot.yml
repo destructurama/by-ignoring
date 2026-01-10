@@ -6,6 +6,9 @@ updates:
     directory: "src"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "FluentAssertions"
+        versions: [">=8.0.0"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
