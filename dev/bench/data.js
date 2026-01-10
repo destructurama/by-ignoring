@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768064485969,
+  "lastUpdate": 1768065109659,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1692,6 +1692,42 @@ window.BENCHMARK_DATA = {
             "value": 97.65027302106222,
             "unit": "ns",
             "range": "± 0.4373898371248361"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "sungam3r@yandex.ru",
+            "name": "Ivan Maximov",
+            "username": "sungam3r"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5fd8bd7331490e4d234c80f13f16c490498d96bd",
+          "message": "Pin FluentAssertions version (#80)",
+          "timestamp": "2026-01-10T20:10:21+03:00",
+          "tree_id": "6b624e739f6d9b21a4937224419b98d0655310ba",
+          "url": "https://github.com/destructurama/by-ignoring/commit/5fd8bd7331490e4d234c80f13f16c490498d96bd"
+        },
+        "date": 1768065109092,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 100.16333316053662,
+            "unit": "ns",
+            "range": "± 0.6171301971140685"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 98.30294785591272,
+            "unit": "ns",
+            "range": "± 0.577011293010135"
           }
         ]
       }
