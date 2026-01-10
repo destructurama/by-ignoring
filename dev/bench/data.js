@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768065500666,
+  "lastUpdate": 1768065706579,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1800,6 +1800,42 @@ window.BENCHMARK_DATA = {
             "value": 99.95621148347854,
             "unit": "ns",
             "range": "± 0.6992462575076025"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e60805e29280ca317fec349ce6e3d598e5da32ca",
+          "message": "Bump PublicApiGenerator from 11.2.0 to 11.5.4 (#82)\n\n---\nupdated-dependencies:\n- dependency-name: PublicApiGenerator\n  dependency-version: 11.5.4\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ivan Maximov <sungam3r@yandex.ru>",
+          "timestamp": "2026-01-10T20:20:20+03:00",
+          "tree_id": "4d9cf2043f9d47df656b0b722f94b026080802a7",
+          "url": "https://github.com/destructurama/by-ignoring/commit/e60805e29280ca317fec349ce6e3d598e5da32ca"
+        },
+        "date": 1768065706111,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 108.7720669468244,
+            "unit": "ns",
+            "range": "± 1.9201678657298216"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 137.76700722376506,
+            "unit": "ns",
+            "range": "± 1.608021622474157"
           }
         ]
       }
