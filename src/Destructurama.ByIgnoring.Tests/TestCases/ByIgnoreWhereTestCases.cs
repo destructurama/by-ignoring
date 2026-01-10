@@ -18,7 +18,7 @@ using Serilog.Events;
 
 namespace Destructurama.ByIgnoring.Tests;
 
-public class ByIgnoreWhereTestCases
+public static class ByIgnoreWhereTestCases
 {
     public static IEnumerable<ByIgnoreWhereTestCase> ShouldDestructureSuccessfullyTestCases()
     {

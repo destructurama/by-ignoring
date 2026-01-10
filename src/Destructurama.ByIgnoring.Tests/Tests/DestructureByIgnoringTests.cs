@@ -21,6 +21,7 @@ using Shouldly;
 namespace Destructurama.ByIgnoring.Tests;
 
 [TestFixture]
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Structure", "NUnit1030:The type of parameter provided by the TestCaseSource does not match the type of the parameter in the Test method", Justification = "Generic")]
 public class DestructureByIgnoringTests
 {
     [TestCaseSource(typeof(ByIgnoringTestCases), nameof(ByIgnoringTestCases.DestructureMeSuccessTestCases))]
