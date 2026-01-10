@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768065109659,
+  "lastUpdate": 1768065480286,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1728,6 +1728,42 @@ window.BENCHMARK_DATA = {
             "value": 98.30294785591272,
             "unit": "ns",
             "range": "± 0.577011293010135"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d71ddaeae9f3190c57e8b109d73772c16dd11776",
+          "message": "Bump Shouldly from 4.2.1 to 4.3.0 (#84)\n\n---\nupdated-dependencies:\n- dependency-name: Shouldly\n  dependency-version: 4.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-01-10T20:16:27+03:00",
+          "tree_id": "9fdaf97e6464368d8cd8c920be77e24b34aecc14",
+          "url": "https://github.com/destructurama/by-ignoring/commit/d71ddaeae9f3190c57e8b109d73772c16dd11776"
+        },
+        "date": 1768065479841,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 95.715475831713,
+            "unit": "ns",
+            "range": "± 0.7967887932456005"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 96.12059744993846,
+            "unit": "ns",
+            "range": "± 0.3082866722998304"
           }
         ]
       }
