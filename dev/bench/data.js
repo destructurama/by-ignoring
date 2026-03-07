@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770143032381,
+  "lastUpdate": 1772881922466,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1944,6 +1944,42 @@ window.BENCHMARK_DATA = {
             "value": 100.0001540694918,
             "unit": "ns",
             "range": "± 0.6915672296897416"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ed9f7c94a2700e51aae88c62b14735ee1d33811e",
+          "message": "Bump actions/upload-artifact from 6 to 7 (#92)\n\n* Bump actions/upload-artifact from 6 to 7\n\nBumps [actions/upload-artifact](https://github.com/actions/upload-artifact) from 6 to 7.\n- [Release notes](https://github.com/actions/upload-artifact/releases)\n- [Commits](https://github.com/actions/upload-artifact/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/upload-artifact\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* fix\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ivan Maximov <sungam3r@yandex.ru>",
+          "timestamp": "2026-03-07T14:10:31+03:00",
+          "tree_id": "01725a569a40e65a6f1fbd581a66e3805f6dbe5c",
+          "url": "https://github.com/destructurama/by-ignoring/commit/ed9f7c94a2700e51aae88c62b14735ee1d33811e"
+        },
+        "date": 1772881922134,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 98.95662023339953,
+            "unit": "ns",
+            "range": "± 1.0715680400937113"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 96.30540668505888,
+            "unit": "ns",
+            "range": "± 0.3147314281165562"
           }
         ]
       }
