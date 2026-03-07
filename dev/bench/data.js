@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772882349907,
+  "lastUpdate": 1772883017511,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2052,6 +2052,42 @@ window.BENCHMARK_DATA = {
             "value": 98.07347212632497,
             "unit": "ns",
             "range": "± 1.3605028807905633"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1b9272b8c86e77f99d4b808d3b9e7bcb59dcd3d8",
+          "message": "Bump Microsoft.NET.Test.Sdk from 18.0.1 to 18.3.0 (#91)\n\n* Bump Microsoft.NET.Test.Sdk from 18.0.1 to 18.3.0\n\n---\nupdated-dependencies:\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* Apply suggestion from @sungam3r\n\n* Apply suggestion from @sungam3r\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ivan Maximov <sungam3r@yandex.ru>",
+          "timestamp": "2026-03-07T14:28:48+03:00",
+          "tree_id": "536ccb1c14ad1710a23b393857dfd02b9fd968de",
+          "url": "https://github.com/destructurama/by-ignoring/commit/1b9272b8c86e77f99d4b808d3b9e7bcb59dcd3d8"
+        },
+        "date": 1772883016614,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 103.42844072672037,
+            "unit": "ns",
+            "range": "± 0.5723160047339457"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 99.74477357467016,
+            "unit": "ns",
+            "range": "± 1.7779671505474557"
           }
         ]
       }
