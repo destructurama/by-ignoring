@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772882208947,
+  "lastUpdate": 1772882349907,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2016,6 +2016,42 @@ window.BENCHMARK_DATA = {
             "value": 143.83082256998335,
             "unit": "ns",
             "range": "± 1.037476421672911"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f4aed39faa1a2ad605362735766d210a09ab0b9a",
+          "message": "Bump NUnit from 4.4.0 to 4.5.0 (#90)\n\n---\nupdated-dependencies:\n- dependency-name: NUnit\n  dependency-version: 4.5.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ivan Maximov <sungam3r@yandex.ru>",
+          "timestamp": "2026-03-07T14:17:40+03:00",
+          "tree_id": "502e6cb86d9c1a13af92e0bf9ca2238418482fe2",
+          "url": "https://github.com/destructurama/by-ignoring/commit/f4aed39faa1a2ad605362735766d210a09ab0b9a"
+        },
+        "date": 1772882349437,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 97.17287357364383,
+            "unit": "ns",
+            "range": "± 1.0658826136090962"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 98.07347212632497,
+            "unit": "ns",
+            "range": "± 1.3605028807905633"
           }
         ]
       }
