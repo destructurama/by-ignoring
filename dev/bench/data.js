@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772883017511,
+  "lastUpdate": 1772883311559,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2088,6 +2088,42 @@ window.BENCHMARK_DATA = {
             "value": 99.74477357467016,
             "unit": "ns",
             "range": "± 1.7779671505474557"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ac54bbd72ea2c235f6730a999ebdb876165df0e3",
+          "message": "Bump coverlet.msbuild from 6.0.4 to 8.0.0 (#89)\n\n---\nupdated-dependencies:\n- dependency-name: coverlet.msbuild\n  dependency-version: 8.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-07T14:33:26+03:00",
+          "tree_id": "f5ae4e011898b16c24a4bf504e5b93c0e37d0ea2",
+          "url": "https://github.com/destructurama/by-ignoring/commit/ac54bbd72ea2c235f6730a999ebdb876165df0e3"
+        },
+        "date": 1772883311237,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 103.84988952800632,
+            "unit": "ns",
+            "range": "± 3.3118805243541214"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 102.6860507329305,
+            "unit": "ns",
+            "range": "± 1.7253856924402964"
           }
         ]
       }
