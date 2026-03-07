@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772881922466,
+  "lastUpdate": 1772882208947,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -1980,6 +1980,42 @@ window.BENCHMARK_DATA = {
             "value": 96.30540668505888,
             "unit": "ns",
             "range": "± 0.3147314281165562"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bf3505cc8eaf23c0ec861a6d6ca4e92b8c1ffc4",
+          "message": "Bump FluentAssertions from 7.2.0 to 7.2.1 (#87)\n\n---\nupdated-dependencies:\n- dependency-name: FluentAssertions\n  dependency-version: 7.2.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ivan Maximov <sungam3r@yandex.ru>",
+          "timestamp": "2026-03-07T14:14:42+03:00",
+          "tree_id": "68c2b1b4ffd534609e0bdf6e3f9b9bb4600aa7ab",
+          "url": "https://github.com/destructurama/by-ignoring/commit/8bf3505cc8eaf23c0ec861a6d6ca4e92b8c1ffc4"
+        },
+        "date": 1772882208091,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 120.64049070021686,
+            "unit": "ns",
+            "range": "± 4.993943737969622"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 143.83082256998335,
+            "unit": "ns",
+            "range": "± 1.037476421672911"
           }
         ]
       }
