@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772883311559,
+  "lastUpdate": 1773154063264,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2124,6 +2124,42 @@ window.BENCHMARK_DATA = {
             "value": 102.6860507329305,
             "unit": "ns",
             "range": "± 1.7253856924402964"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "df8065219357505193fe9799ee14688281e349e2",
+          "message": "Bump NUnit from 4.5.0 to 4.5.1 (#93)\n\n---\nupdated-dependencies:\n- dependency-name: NUnit\n  dependency-version: 4.5.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-03-10T17:46:03+03:00",
+          "tree_id": "e6585ce9f4967c6cb27b543b8240894899ea05bf",
+          "url": "https://github.com/destructurama/by-ignoring/commit/df8065219357505193fe9799ee14688281e349e2"
+        },
+        "date": 1773154062685,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 103.87173844300784,
+            "unit": "ns",
+            "range": "± 0.7314291526104987"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 102.31898817618688,
+            "unit": "ns",
+            "range": "± 0.40490942329895974"
           }
         ]
       }
