@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776004708175,
+  "lastUpdate": 1776005083977,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2232,6 +2232,42 @@ window.BENCHMARK_DATA = {
             "value": 101.43536662658056,
             "unit": "ns",
             "range": "± 1.1499800956268351"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80194703e676adef5e39b744829d3daf3c2b4522",
+          "message": "Bump DotNetProjectFile.Analyzers from 1.9.0 to 1.10.0 (#98)\n\n---\nupdated-dependencies:\n- dependency-name: DotNetProjectFile.Analyzers\n  dependency-version: 1.10.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-04-12T17:43:09+03:00",
+          "tree_id": "4d5ab8d12df35acc1ca309ffb3413ae1da65868f",
+          "url": "https://github.com/destructurama/by-ignoring/commit/80194703e676adef5e39b744829d3daf3c2b4522"
+        },
+        "date": 1776005083022,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 97.52545093695322,
+            "unit": "ns",
+            "range": "± 0.6748866350062421"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 103.09531954129537,
+            "unit": "ns",
+            "range": "± 0.580142754678968"
           }
         ]
       }
