@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775948213333,
+  "lastUpdate": 1776004708175,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2196,6 +2196,42 @@ window.BENCHMARK_DATA = {
             "value": 100.70646458069483,
             "unit": "ns",
             "range": "± 0.43609457538510393"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "59e40c276843f8f703e01b04d013f3aeac403c6f",
+          "message": "Bump Microsoft.NET.Test.Sdk from 18.3.0 to 18.4.0 (#99)\n\n---\nupdated-dependencies:\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.4.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-04-12T17:36:54+03:00",
+          "tree_id": "b4fd90c004cb31bf6ffe7d0d7e9a601fcae69d86",
+          "url": "https://github.com/destructurama/by-ignoring/commit/59e40c276843f8f703e01b04d013f3aeac403c6f"
+        },
+        "date": 1776004707817,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 104.80697377125422,
+            "unit": "ns",
+            "range": "± 0.5871360767566716"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 101.43536662658056,
+            "unit": "ns",
+            "range": "± 1.1499800956268351"
           }
         ]
       }
