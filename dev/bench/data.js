@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776005096263,
+  "lastUpdate": 1776005120518,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2340,6 +2340,42 @@ window.BENCHMARK_DATA = {
             "value": 99.2225233912468,
             "unit": "ns",
             "range": "± 1.3578119043197023"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0d81336e13c44ea6a3122ff0656f66278f76d38a",
+          "message": "Bump NUnit3TestAdapter from 6.1.0 to 6.2.0 (#96)\n\n---\nupdated-dependencies:\n- dependency-name: NUnit3TestAdapter\n  dependency-version: 6.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-04-12T17:43:51+03:00",
+          "tree_id": "008364edfcea07c1e6fe24b058cdce3943969118",
+          "url": "https://github.com/destructurama/by-ignoring/commit/0d81336e13c44ea6a3122ff0656f66278f76d38a"
+        },
+        "date": 1776005119582,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 96.47283899784088,
+            "unit": "ns",
+            "range": "± 1.0097183561926721"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 97.54150711573087,
+            "unit": "ns",
+            "range": "± 0.7233787282607577"
           }
         ]
       }
