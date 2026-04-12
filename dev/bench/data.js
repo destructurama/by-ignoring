@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776005094107,
+  "lastUpdate": 1776005096263,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2304,6 +2304,42 @@ window.BENCHMARK_DATA = {
             "value": 99.7615659157435,
             "unit": "ns",
             "range": "± 0.7034253116362597"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2fe9dd070a8004a40572b2b9fcfc0c9b6d2482d3",
+          "message": "Bump codecov/codecov-action from 5 to 6 (#97)\n\nBumps [codecov/codecov-action](https://github.com/codecov/codecov-action) from 5 to 6.\n- [Release notes](https://github.com/codecov/codecov-action/releases)\n- [Changelog](https://github.com/codecov/codecov-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/codecov/codecov-action/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: codecov/codecov-action\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-04-12T17:43:28+03:00",
+          "tree_id": "560f21949099bbb6b053b820306259db4477093a",
+          "url": "https://github.com/destructurama/by-ignoring/commit/2fe9dd070a8004a40572b2b9fcfc0c9b6d2482d3"
+        },
+        "date": 1776005095803,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 95.98015212161201,
+            "unit": "ns",
+            "range": "± 1.5604251884553713"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 99.2225233912468,
+            "unit": "ns",
+            "range": "± 1.3578119043197023"
           }
         ]
       }
