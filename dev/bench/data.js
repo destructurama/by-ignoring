@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776005083977,
+  "lastUpdate": 1776005094107,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2268,6 +2268,42 @@ window.BENCHMARK_DATA = {
             "value": 103.09531954129537,
             "unit": "ns",
             "range": "± 0.580142754678968"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "71e2c0d9c5435057ae5af1205d318418fc311c1f",
+          "message": "Bump FluentAssertions from 7.2.1 to 7.2.2 (#94)\n\n---\nupdated-dependencies:\n- dependency-name: FluentAssertions\n  dependency-version: 7.2.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-04-12T17:42:54+03:00",
+          "tree_id": "508db9f3143763565e12e20dfd17ef7e55360267",
+          "url": "https://github.com/destructurama/by-ignoring/commit/71e2c0d9c5435057ae5af1205d318418fc311c1f"
+        },
+        "date": 1776005093537,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 109.44829884171486,
+            "unit": "ns",
+            "range": "± 4.118933511049301"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 99.7615659157435,
+            "unit": "ns",
+            "range": "± 0.7034253116362597"
           }
         ]
       }
