@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779380039540,
+  "lastUpdate": 1779380190328,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2592,6 +2592,42 @@ window.BENCHMARK_DATA = {
             "value": 102.306376516819,
             "unit": "ns",
             "range": "± 1.0856955482963697"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d7c15472b867d74a0a77b7807ee108d5f245cccd",
+          "message": "Bump coverlet.msbuild from 10.0.0 to 10.0.1 (#111)\n\n---\nupdated-dependencies:\n- dependency-name: coverlet.msbuild\n  dependency-version: 10.0.1\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-05-21T19:14:55+03:00",
+          "tree_id": "a08960f5ab8fd20cab0a30b9938ea8f7b358f190",
+          "url": "https://github.com/destructurama/by-ignoring/commit/d7c15472b867d74a0a77b7807ee108d5f245cccd"
+        },
+        "date": 1779380189889,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 101.58755849874936,
+            "unit": "ns",
+            "range": "± 0.42846308311993797"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 102.14167028268179,
+            "unit": "ns",
+            "range": "± 0.3968937828636215"
           }
         ]
       }
