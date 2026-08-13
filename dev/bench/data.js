@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1786598237380,
+  "lastUpdate": 1786598561573,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2736,6 +2736,42 @@ window.BENCHMARK_DATA = {
             "value": 69.46960575763995,
             "unit": "ns",
             "range": "± 0.7322388120993979"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "69b2e6c40a1d45cb6af77020e1ff7b9bf9fe78f1",
+          "message": "Bump Roslynator.Analyzers from 4.15.0 to 4.16.0 (#127)\n\n---\nupdated-dependencies:\n- dependency-name: Roslynator.Analyzers\n  dependency-version: 4.16.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ivan Maximov <sungam3r@yandex.ru>",
+          "timestamp": "2026-08-13T08:21:25+03:00",
+          "tree_id": "60e711841e688f496633aea92fb430f0490ef866",
+          "url": "https://github.com/destructurama/by-ignoring/commit/69b2e6c40a1d45cb6af77020e1ff7b9bf9fe78f1"
+        },
+        "date": 1786598560442,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 80.92217339674632,
+            "unit": "ns",
+            "range": "± 0.7410740132006565"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 83.44631014267604,
+            "unit": "ns",
+            "range": "± 0.6239651028340284"
           }
         ]
       }
