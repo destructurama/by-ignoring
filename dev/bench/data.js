@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779828525562,
+  "lastUpdate": 1786598090323,
   "repoUrl": "https://github.com/destructurama/by-ignoring",
   "entries": {
     "Benchmarks": [
@@ -2664,6 +2664,42 @@ window.BENCHMARK_DATA = {
             "value": 111.7395715340972,
             "unit": "ns",
             "range": "± 2.1451948209252705"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d71beb5c3ec3ed445e00324ce75a3e5ce04d1227",
+          "message": "Bump Roslynator.Formatting.Analyzers from 4.15.0 to 4.16.0 (#128)\n\n---\nupdated-dependencies:\n- dependency-name: Roslynator.Formatting.Analyzers\n  dependency-version: 4.16.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-08-13T08:13:23+03:00",
+          "tree_id": "908f46d68cef623580fcc0c7b46e244817332c82",
+          "url": "https://github.com/destructurama/by-ignoring/commit/d71beb5c3ec3ed445e00324ce75a3e5ce04d1227"
+        },
+        "date": 1786598089785,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.Destructure",
+            "value": 95.75695793969291,
+            "unit": "ns",
+            "range": "± 1.0411376538420667"
+          },
+          {
+            "name": "Benchmarks.ByIgnoringBenchmarks.DestructureAssignable",
+            "value": 99.166395008564,
+            "unit": "ns",
+            "range": "± 1.1842141856489379"
           }
         ]
       }
